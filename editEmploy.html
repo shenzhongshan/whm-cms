@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Dashboard - Bootstrap Admin Template</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<link href="css/bootstrap.min.css" rel="stylesheet">
+<link href="css/bootstrap-responsive.min.css" rel="stylesheet">
+<link href="http://fonts.googleapis.com/css?family=Open+Sans:400italic,600italic,400,600"
+        rel="stylesheet">
+<link href="css/font-awesome.css" rel="stylesheet">
+<link href="css/style.css" rel="stylesheet">
+
+<!-- Le HTML5 shim, for IE6-8 support of HTML5 elements -->
+<!--[if lt IE 9]>
+      <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+</head>
+<body>
+<div class="navbar navbar-fixed-top">
+  <div class="navbar-inner">
+    <div class="container"> <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse"><span
+                    class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span> </a><a class="brand" href="index.html">天天员工管理系统 </a>
+      <div class="nav-collapse">
+        <ul class="nav pull-right">
+          <li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown"><i
+                            class="icon-cog"></i> 管理员 <b class="caret"></b></a>
+            <ul class="dropdown-menu">
+              <li><a href="editPassword.html">修改密码</a></li> 
+              <li><a href="javascript:;">帮助</a></li>
+            </ul>
+          </li>
+          <li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown"><i
+                            class="icon-user"></i> 退出 <b class="caret"></b></a>
+            <ul class="dropdown-menu"> 
+              <li><a href="login.html">退出</a></li>
+            </ul>
+          </li>
+        </ul> 
+      </div>
+      <!--/.nav-collapse --> 
+    </div>
+    <!-- /container --> 
+  </div>
+  <!-- /navbar-inner --> 
+</div>
+<!-- /navbar -->
+<br/>
+<!-- /subnavbar -->
+<div class="main">
+  <div class="main-inner">
+    <div class="container">
+      <div class="row">
+	    <div class="span3">
+		<div class="widget widget-nopad">
+            <div class="widget-header"> <i class="icon-list-ol"></i>
+              <h3> 系统管理</h3>
+            </div>
+            <!-- /widget-header -->
+            <div class="widget-content">
+              <div class="widget big-stats-container">
+                <div class="">
+				 <ul class="nav nav-list bs-docs-sidenav nav-collapse collapse"> 
+                        <li>
+                            <a href="main.html"><i class="icon-table"></i> 项目管理</a>
+                        </li>
+                        <li>
+                            <a href="projectWorkSheet.html"><i class="icon-signal"></i> 员工月报管理</a>
+                        </li>
+                         <li>
+                            <a href="wa.html"><i class="icon-group"></i>  考勤管理</a>
+                        </li>
+                        <li>
+                            <a href="employ.html"><i class="icon-user"></i> 员工管理</a>
+                        </li> 
+                        <li>
+                            <a href="#"><i class=" icon-file"></i><span class="badge badge-info pull-right">11</span> 报告</a>
+                        </li> 
+                        
+                    </ul>
+				 </div>
+                <!-- /widget-content --> 
+                
+              </div>
+            </div>
+          </div>
+          <!-- /widget -->
+          
+          <!-- /widget -->
+          
+          <!-- /widget --> 
+        </div>
+        <!-- /span3 -->
+		 
+        <div class="span9">
+          <div class="widget widget-nopad">
+            <div class="widget-header"> <i class="icon-list-ol"></i>
+              <h3> 编辑员工信息</h3> 
+            </div>
+            <!-- /widget-header -->
+            <div class="widget-content">
+              <div class="widget big-stats-container">
+                 <form id="edit-profile" class="form-horizontal">
+									<fieldset>
+										<br/>
+										<div class="control-group">											
+											<label class="control-label" for="username">工号</label>
+											<div class="controls">
+												<input type="text" class="span6 disabled" id="username" value="工号" >
+												<p class="help-block">工号，保存后不可修改.</p>
+											</div> <!-- /controls -->				
+										</div> <!-- /control-group -->
+										
+										
+										<div class="control-group">											
+											<label class="control-label" for="firstname">姓名</label>
+											<div class="controls">
+												<input type="text" class="span6" id="firstname" value="姓名">
+											</div> <!-- /controls -->				
+										</div> <!-- /control-group -->
+										
+										 
+										<div class="control-group">											
+											<label class="control-label">性别</label>
+											
+                                            
+                                            <div class="controls">
+                                            <label class="radio inline">
+                                              <input type="radio"  name="radiobtns"> 男
+                                            </label>
+                                            
+                                            <label class="radio inline">
+                                              <input type="radio" name="radiobtns"> 女
+                                            </label>
+                                          </div>	<!-- /controls -->			
+										</div> <!-- /control-group --> 
+										
+										 
+										
+                                        
+                                        <div class="control-group">											
+											<label class="control-label" for="radiobtns">职务</label>
+											
+                                            <div class="controls">
+                                               <div class="input-prepend input-append">
+                                                 <select>
+													<option value=PN001>主任</option>
+													<option value=PN001>副主任</option>
+													<option value=PN001>一般设计人员</option>													
+												 </select>
+                                                </div>
+                                              </div>	<!-- /controls -->			
+										</div> <!-- /control-group -->
+                                        
+                                        
+                                          
+                                        <div class="control-group">											
+											<label class="control-label" for="radiobtns">职称</label>
+											
+                                            <div class="controls">
+                                               <div class="input-prepend input-append">
+                                                 <select>
+													<option value=PN001>教授级高级工程师</option>
+													<option value=PN001>高级工程师</option>
+													<option value=PN001>工程师</option>													
+													<option value=PN001>助理工程师</option>													
+													<option value=PN001>见习生</option>													
+												 </select>
+                                                </div>
+                                              </div>	<!-- /controls -->			
+										</div> <!-- /control-group -->
+                                        
+                                        
+                                        <div class="control-group">											
+											<label class="control-label" for="radiobtns">岗位级别</label>
+											
+                                            <div class="controls">
+                                               <div class="input-prepend input-append">
+                                                 <select>
+													<option value=PN001>1级</option>
+													<option value=PN001>1级</option>
+													<option value=PN001>1级</option>													
+													<option value=PN001>1级</option>													
+													<option value=PN001>1级</option>													
+												 </select>
+                                                </div>
+                                              </div>	<!-- /controls -->			
+										</div> <!-- /control-group --> 
+										
+										 <div class="control-group">											
+											<label class="control-label" for="radiobtns">角色 </label>
+											
+                                            <div class="controls">
+                                               <div class="input-prepend input-append">
+                                                 <select>
+													<option value=PN001>1级</option>
+													<option value=PN001>1级</option>
+													<option value=PN001>1级</option>													
+													<option value=PN001>1级</option>													
+													<option value=PN001>1级</option>													
+												 </select>
+                                                </div>
+                                              </div>	<!-- /controls -->			
+										</div> <!-- /control-group --> 
+										 <br /> 
+											
+										<div class="form-actions">
+											<button type="submit" class="btn btn-primary">保存</button> 
+											<a href="employ.html" class="btn">返回</a>
+										</div> <!-- /form-actions -->
+									</fieldset>
+								</form>
+						 
+				</div>
+                </div>
+                <!-- /widget-content --> 
+                
+              </div>
+            </div>
+          </div>
+          <!-- /widget -->
+          
+          <!-- /widget -->
+          
+          <!-- /widget --> 
+        </div>
+        <!-- /span8 -->
+         
+        
+      </div>
+      <!-- /row --> 
+    </div>
+    <!-- /container --> 
+  </div>
+  <!-- /main-inner --> 
+</div>
+<!-- /main -->
+
+<!-- modal windows -->  
+ 
+
+<!-- /extra -->
+<div class="footer">
+  <div class="footer-inner">
+    <div class="container">
+      <div class="row">
+        <div class="span12"> &copy; 2013  天天员工管理系统</a>. </div>
+        <!-- /span12 --> 
+      </div>
+      <!-- /row --> 
+    </div>
+    <!-- /container --> 
+  </div>
+  <!-- /footer-inner --> 
+</div>
+<!-- /footer --> 
+<!-- Le javascript
+================================================== --> 
+<!-- Placed at the end of the document so the pages load faster --> 
+<script src="js/jquery-1.7.2.min.js"></script> 
+<script src="js/excanvas.min.js"></script>  
+<script src="js/bootstrap.js"></script> 
+<script src="js/base.js"></script>  
+</body>
+</html>
