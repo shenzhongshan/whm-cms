@@ -10,8 +10,8 @@ var whm={
 	         dataType: 'JSON',
 	         contentType: whm.contentType,
 	         type: 'POST',
-	         success: whm.login_success,
-	         error: whm.login_error
+	         success: whm.login_success_fn,
+	         error: whm.login_error_fn
 	     });
 	},
 	login_para:function(){
@@ -21,15 +21,16 @@ var whm={
 	      } 
 		return JSON.stringify( param );
 	},
-	login_success:function(data, textStatus, request){
+	login_success_fn:function(data, textStatus, request){
 		var authorization = request.getResponseHeader("Authorization"); 
 		var token = authorization.replace(whm.token_flag,"");
 		$.cookie('authorization', authorization, { expires: 1, path: '/' });
-		$.cookie('token', token, { expires: 1, path: '/' });
-		console.log($.cookie('token'));
-		document.location.replace("/whm/index.html");
+		$.cookie('token', token, { expires: 1, path: '/' }); 
+		$.cookie('login_user', $("#username").val(), { expires: 1, path: '/' });
+		console.log(authorization);
+		document.location.replace("/whm/index.html"); 
 	},
-	login_error:function(){
+	login_error_fn:function(){
 		alert("登陆失败");
 	}
 }

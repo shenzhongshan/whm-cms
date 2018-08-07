@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="utf-8">
-<title>员工工天管理1</title>
+<title>员工工天管理</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <link href="css/bootstrap.min.css" rel="stylesheet">
@@ -24,21 +24,15 @@
                     class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span> </a><a class="brand" href="index.html">员工工天管理系统 </a>
       <div class="nav-collapse">
         <ul class="nav pull-right">
-          <li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown"><i
+         <li id="index_header_admin_li"></li> 
+          <li class="dropdown"><a href="#" id="index_header_login_user" class="dropdown-toggle" data-toggle="dropdown"><i
                             class="icon-cog"></i> 账户 <b class="caret"></b></a>
-            <ul class="dropdown-menu">
-			  <li><a href="main.html">管理员</a></li> 
+            <ul class="dropdown-menu"> 
               <li><a href="editPassword.html">修改密码</a></li> 
               <li><a href="javascript:;">帮助</a></li>
             </ul>
           </li>
-          <li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown"><i
-                            class="icon-user"></i> 退出 <b class="caret"></b></a>
-            <ul class="dropdown-menu"> 
-				
-              <li><a href="login.html">退出</a></li>
-            </ul>
-          </li>
+          <li id="index_header_logout_li" ><a href="#"  ><i class="icon-user"></i> 退出  </b></a> </li>
         </ul> 
       </div>
       <!--/.nav-collapse --> 
@@ -54,21 +48,21 @@
 	
       <ul class="mainnav">
        <li  > <i class=" icon-book1"></i><span>
-	   <select style="width:100px !important;height:60px;font-size: 20px;font-weight: bold;"><option>2016年</option><option>2017年</option><option>2018年</option><option>2019年</option></select>
+	   <select id="index_header_year_select" style="width:100px !important;height:60px;font-size: 20px;font-weight: bold;"><option>2016年</option><option>2017年</option><option>2018年</option><option>2019年</option></select>
 	   
 	   </span>  </li>
-	  <li class=""><a href="#"> <i class="icon-calendar"></i><span>1月</span> </a> </li>
-	  <li class=""><a href="#"> <i class="icon-calendar"></i><span>2月</span> </a> </li>
-	  <li class=""><a href="#"> <i class="icon-calendar"></i><span>3月</span> </a> </li>
-	  <li class=""><a href="#"> <i class="icon-calendar"></i><span>4月</span> </a> </li>
-	  <li class=""><a href="#"> <i class="icon-calendar"></i><span>5月</span> </a> </li>
-	  <li class=""><a href="#"> <i class="icon-calendar"></i><span>6月</span> </a> </li>
-	  <li class="active"><a href="#"> <i class="icon-calendar"></i><span>7月</span> </a> </li>
-	  <li class=""><a href="#"> <i class="icon-calendar"></i><span>8月</span> </a> </li>
-	  <li class=""><a href="#"> <i class="icon-calendar"></i><span>9月</span> </a> </li>
-	  <li class=""><a href="#"> <i class="icon-calendar"></i><span>10月</span> </a> </li>
-	  <li class=""><a href="#"> <i class="icon-calendar"></i><span>11月</span> </a> </li>
-	  <li class=""><a href="#"> <i class="icon-calendar"></i><span>12月</span> </a> </li>
+	  <li class="" m=1><a href="javascript:void"> <i class="icon-calendar"></i><span>1月</span> </a> </li>
+	  <li class="" m=2><a href="javascript:void"> <i class="icon-calendar"></i><span>2月</span> </a> </li>
+	  <li class="" m=3><a href="javascript:void"> <i class="icon-calendar"></i><span>3月</span> </a> </li>
+	  <li class="" m=4><a href="javascript:void"> <i class="icon-calendar"></i><span>4月</span> </a> </li>
+	  <li class="" m=5><a href="javascript:void"> <i class="icon-calendar"></i><span>5月</span> </a> </li>
+	  <li class="" m=6><a href="javascript:void"> <i class="icon-calendar"></i><span>6月</span> </a> </li>
+	  <li class="active" m=7><a href="javascript:void"> <i class="icon-calendar"></i><span>7月</span> </a> </li>
+	  <li class="" m=8><a href="javascript:void"> <i class="icon-calendar"></i><span>8月</span> </a> </li>
+	  <li class="" m=9><a href="javascript:void"> <i class="icon-calendar"></i><span>9月</span> </a> </li>
+	  <li class="" m=10><a href="javascript:void"> <i class="icon-calendar"></i><span>10月</span> </a> </li>
+	  <li class="" m=11><a href="javascript:void"> <i class="icon-calendar"></i><span>11月</span> </a> </li>
+	  <li class="" m=12><a href="javascript:void"> <i class="icon-calendar"></i><span>12月</span> </a> </li>
 	  
 	    
 	   
@@ -81,7 +75,7 @@
 <!-- /subnavbar -->
 <div class="main">
   <div class="main-inner">
-    <div class="container">
+    <div class="container" id="index_main_container_div">
 	
 		
 	<!-- end edit report -->
@@ -90,7 +84,7 @@
         <div class="span12">
           <div class="widget widget-nopad">
             <div class="widget-header"> <i class="icon-list-ol"></i>
-              <h3> 2018-06 工作月报</h3><h3> 状态: 未提交</h3>    <a class="btn btn-primary"  href="applyProject.html" >新增</a> <a class="btn btn-primary"  href="applyProject.html" >提交</a> 
+              <h3 > 2018-06 工作月报</h3><h3> 状态: 未提交</h3>    <a class="btn btn-primary"  href="applyProject.html" >新增</a> <a class="btn btn-primary"  href="applyProject.html" >提交</a> 
             </div>
             <!-- /widget-header -->
             <div class="widget-content">
@@ -183,32 +177,8 @@
   <!-- /main-inner --> 
 </div>
 <!-- /main -->
-<!-- 模态框（Modal） -->
  
-
-<div class="modal fade" id="importModal" tabindex="-1" role="dialog" aria-labelledby="importModalLabel" aria-hidden="true" style="width:620px">
-    <div class="modal-dialog" >
-        <div class="modal-content">
-            <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                <h4 class="modal-title" id="importModalLabel">项目日志信息</h4>
-            </div>
-            <div class="modal-body">
-				<table>
-					<tr>
-						<td>请选择要导入的文件</td>	
-						<td>:</td><td><input type=file /></td>
-					</tr> 
-				</table>
-			
-			</div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
-                <button type="button" class="btn btn-primary">导入</button>
-            </div>
-        </div><!-- /.modal-content -->
-    </div><!-- /.modal -->
-</div>
+ 
 
 <!-- /extra -->
 <div class="footer">
@@ -229,8 +199,15 @@
 ================================================== --> 
 <!-- Placed at the end of the document so the pages load faster --> 
 <script src="js/jquery-1.7.2.min.js"></script> 
-<script src="js/excanvas.min.js"></script>  
+<script src="js/jquery.cookie.js"></script>
 <script src="js/bootstrap.js"></script> 
-<script src="js/base.js"></script>  
+<script src="js/handlebars-v4.0.11.js"></script> 
+<script>
+Handlebars.registerHelper("addOne",function(index){this._index = index+1; return this._index;});
+Handlebars.registerHelper("toDate",function(date){date = date.split("T")[0]; return date});
+Handlebars.registerHelper("toDateTime",function(date){date = date?date.replace(".000+0000","").replace("T"," "):""; return date});
+
+</script>
+<script src="js/whm.js"></script>  
 </body>
 </html>
