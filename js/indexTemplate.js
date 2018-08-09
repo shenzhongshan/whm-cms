@@ -2,7 +2,7 @@
         <div class="span12">
           <div class="widget widget-nopad">
             <div class="widget-header"> <i class="icon-list-ol"></i>
-              <h3 > {{month}} 工作月报</h3><h3> 状态: 未提交</h3>    <a class="btn btn-primary" onclick="whm.edit_Wst_fn();"  href="javascript:void" >新增</a> <a class="btn btn-primary"  href="applyProject.html" >提交</a> 
+              <h3 > {{month}} 工作月报</h3>  {{#if status }} <h3> 状态: 未提交</h3>  {{/if}}   <a class="btn btn-primary" onclick="whm.edit_Wst_fn('新增',null);"  href="javascript:void" >新增</a>{{#if status }}  <a onclick="whm.submit_wts_fn();" class="btn btn-primary"  href="javascript:void" >提交</a>{{/if}}  
             </div>
             <!-- /widget-header -->
             <div class="widget-content">
@@ -43,7 +43,7 @@
 							 {{#if status }}
 							 	已提交
 							 {{else}}
-							 	<a class="btn btn-primary"  href="applyProject.html" >编辑</a> <a class="btn btn-primary"  href="applyProject.html" >删除</a>
+							 	<a class="btn btn-primary"  href="javascript:void" onclick="whm.edit_Wst_fn('编辑',{{prjId}});" >编辑</a> <a class="btn btn-primary"  href="javascript:void" onclick="whm.del_wts_fn({{id}});" >删除</a>
 							 {{/if}}
 							 </td>		  
 							</tr>
