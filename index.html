@@ -201,13 +201,7 @@
 <script src="js/jquery-1.7.2.min.js"></script> 
 <script src="js/jquery.cookie.js"></script>
 <script src="js/bootstrap.js"></script> 
-<script src="js/handlebars-v4.0.11.js"></script> 
-<script>
-Handlebars.registerHelper("addOne",function(index){this._index = index+1; return this._index;});
-Handlebars.registerHelper("toDate",function(date){date = date.split("T")[0]; return date});
-Handlebars.registerHelper("toDateTime",function(date){date = date?date.replace(".000+0000","").replace("T"," "):""; return date});
-
-</script>
+<script src="js/handlebars-v4.0.11.js"></script>  
 <script src="js/whm.js"></script>  
 </body>
 </html>

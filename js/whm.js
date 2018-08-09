@@ -19,6 +19,7 @@ var whm={
 	contentType:'application/json;charset=utf-8',
 	curYear:2010,	curMonth:1,	curSelYearMonth:201010,
 	authorization:'',token:'',loginUser:'',loginStaffId:804019,
+	curWstList:[],
 	api_url:{ 
 		wts_submit:"/whm/wts/submit/",// http://120.0.0.1:9400/whm/wts/submit/month,staffId
 		wts_save:"/whm/wts/save",// http://120.0.0.1:9400/whm/wts/report/201807,
@@ -33,7 +34,7 @@ var whm={
 	get_template:function(path){
 		var template = $.ajax({url:path,async:false});  
 		return Handlebars.compile(template.responseText);
-	},
+	}, 
 	get_json_data:function(url,param,callback_fn,method){
 		$.ajax({
 	         url: url,
@@ -50,10 +51,10 @@ var whm={
 	         error: whm.post_error_fn
 	     });
 	},
-	post_json_data:function(url,data,callback_fn){
+	post_json_data:function(url,param,callback_fn){
 		$.ajax({
 	         url: url,
-	         data: data,  
+	         data: param,  
 	         dataType: 'JSON',
 	         async:false,
 	         beforeSend: function(xhr) { 
@@ -65,6 +66,16 @@ var whm={
 	         success: callback_fn,
 	         error: whm.post_error_fn
 	     });
+	},
+	get_local_wst_by_id:function(wstId){
+		var ts = null;
+		if(!whm.curWstList) return ts;
+		if(whm.curWstList.length<1) return ts;
+		
+		$.each(whm.curWstList,function(i,t){
+			if(t.id == wstId) {ts = t;return false;}
+		});
+		return ts;
 	},
 	init_fn:function(){
 		if(!$.cookie('login_user')){
@@ -122,6 +133,7 @@ var whm={
 			var status = false,adpter = "";
 			if(context[0]) { 
 				adpter = context[0];
+				whm.curWstList = adpter.worksheets;
 				$.each(adpter.worksheets,function(i,t){status = (t.status==0);});
 				adpter.status = status;
 			}else {
@@ -137,15 +149,22 @@ var whm={
 	edit_Wst_fn:function(lable,wstId){ 
 		var container = $("#index_main_container_div");  
 		var template = whm.template.editWst();
-		var date = new Date(), y = date.getFullYear(), m = date.getMonth()+1,lastDay = new Date(y, m, 0);
-		var status=false,days=[],ym = y +"-"+ (m<10?("0"+m):(""+m));
+		var date = new Date(), y = whm.curYear, m = whm.curMonth,lastDay = new Date(y, m, 0);
+		var status=false,days=[],ym = y +"-"+ whm.curMonth;
 		for(var i=1;i<=lastDay.getDate();i++){
 			var value= ym +'-'+(i<10?("0"+i):(""+i));
 			days.push({date:value,day:i});
 		}
 		var prj = whm.query_prj_fn(whm.curSelYearMonth); 
-		var html = template({project:prj,days:days,month:whm.curSelYearMonth,saveBtn:lable,ts:{id:wstId,staffId:whm.loginStaffId}});  
+		var curSt =  whm.get_local_wst_by_id(wstId);
+		var html = template({project:prj,days:days,month:whm.curSelYearMonth,saveBtn:lable,ts:curSt});  
 		container.html(html);
+		var toDate = function(date){ date =(date+"").split("T")[0];  return date; }
+		$("#sel_prjId").val(curSt.project.id);
+		$("#sel_prjPhase").val(curSt.prjPhase);
+		$("#sel_prjPosition").val(curSt.prjPosition);
+		$("#sel_startDate").val(toDate(curSt.startDate));
+		$("#sel_endDate").val(toDate(curSt.endDate));
 	}, 
 	save_wts_fn:function(){ 
 		var wstData = $("#edit-wst-form").serializeObject();

@@ -43,7 +43,7 @@
 							 {{#if status }}
 							 	已提交
 							 {{else}}
-							 	<a class="btn btn-primary"  href="javascript:void" onclick="whm.edit_Wst_fn('编辑',{{prjId}});" >编辑</a> <a class="btn btn-primary"  href="javascript:void" onclick="whm.del_wts_fn({{id}});" >删除</a>
+							 	<a class="btn btn-primary"  href="javascript:void" onclick="whm.edit_Wst_fn('编辑',{{id}});" >编辑</a> <a class="btn btn-primary"  href="javascript:void" onclick="whm.del_wts_fn({{id}});" >删除</a>
 							 {{/if}}
 							 </td>		  
 							</tr>
