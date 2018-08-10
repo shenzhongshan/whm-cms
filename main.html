@@ -18,21 +18,17 @@
   <div class="navbar-inner">
     <div class="container"> <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse"><span
                     class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span> </a><a class="brand" href="index.html">天天员工管理系统 </a>
-      <div class="nav-collapse">
+       <div class="nav-collapse">
         <ul class="nav pull-right">
-          <li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown"><i
-                            class="icon-cog"></i> 管理员 <b class="caret"></b></a>
-            <ul class="dropdown-menu">
+         <li id="index_header_admin_li"></li> 
+          <li class="dropdown"><a href="#" id="index_header_login_user" class="dropdown-toggle" data-toggle="dropdown"><i
+                            class="icon-cog"></i> 账户 <b class="caret"></b></a>
+            <ul class="dropdown-menu"> 
               <li><a href="editPassword.html">修改密码</a></li> 
               <li><a href="javascript:;">帮助</a></li>
             </ul>
           </li>
-          <li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown"><i
-                            class="icon-user"></i> 退出 <b class="caret"></b></a>
-            <ul class="dropdown-menu"> 
-              <li><a href="login.html">退出</a></li>
-            </ul>
-          </li>
+          <li id="index_header_logout_li" ><a href="#"  ><i class="icon-user"></i> 退出  </b></a> </li>
         </ul> 
       </div>
       <!--/.nav-collapse --> 
@@ -104,22 +100,22 @@
 						
 						  <ul class="mainnav">
 						   <li  > <i class=" icon-book1"></i><span>
-						   <select style="width:100px !important;height:60px;font-size: 20px;font-weight: bold;"><option>2016年</option><option>2017年</option><option>2018年</option><option>2019年</option></select>
+						   <select id="index_header_year_select" style="width:100px !important;height:60px;font-size: 20px;font-weight: bold;"><option>2016年</option><option>2017年</option><option>2018年</option><option>2019年</option></select>
 						   
 						   </span>  </li>
-						  <li style="min-width:50px !important;" class=""><a href="#"> <i class="icon-calendar"></i><span>1月</span> </a> </li>
-						  <li style="min-width:50px !important;" class=""><a href="#"> <i class="icon-calendar"></i><span>2月</span> </a> </li>
-						  <li style="min-width:50px !important;" class=""><a href="#"> <i class="icon-calendar"></i><span>3月</span> </a> </li>
-						  <li style="min-width:50px !important;" class=""><a href="#"> <i class="icon-calendar"></i><span>4月</span> </a> </li>
-						  <li style="min-width:50px !important;" class=""><a href="#"> <i class="icon-calendar"></i><span>5月</span> </a> </li>
-						  <li style="min-width:50px !important;" class=""><a href="#"> <i class="icon-calendar"></i><span>6月</span> </a> </li>
-						  <li style="min-width:50px !important;" class="active"><a href="#"> <i class="icon-calendar"></i><span>7月</span> </a> </li>
-						  <li style="min-width:50px !important;" class=""><a href="#"> <i class="icon-calendar"></i><span>8月</span> </a> </li>
-						  <li style="min-width:50px !important;" class=""><a href="#"> <i class="icon-calendar"></i><span>9月</span> </a> </li>
-						  <li style="min-width:50px !important;" class=""><a href="#"> <i class="icon-calendar"></i><span>10月</span> </a> </li>
-						  <li style="min-width:50px !important;" class=""><a href="#"> <i class="icon-calendar"></i><span>11月</span> </a> </li>
-						  <li style="min-width:50px !important;" class=""><a href="#"> <i class="icon-calendar"></i><span>12月</span> </a> </li>
-						  <li><button type="button"  style="min-width:80px !important;height:60px;" class="btn btn-success" data-toggle="modal" data-target="#importModal">导入</button></li>
+						  <li  m=1 style="min-width:50px !important;" class=""><a href="#"> <i class="icon-calendar"></i><span>1月</span> </a> </li>
+						  <li  m=2 style="min-width:50px !important;" class=""><a href="#"> <i class="icon-calendar"></i><span>2月</span> </a> </li>
+						  <li m=3 style="min-width:50px !important;" class=""><a href="#"> <i class="icon-calendar"></i><span>3月</span> </a> </li>
+						  <li m=4 style="min-width:50px !important;" class=""><a href="#"> <i class="icon-calendar"></i><span>4月</span> </a> </li>
+						  <li m=5 style="min-width:50px !important;" class=""><a href="#"> <i class="icon-calendar"></i><span>5月</span> </a> </li>
+						  <li m=6 style="min-width:50px !important;" class=""><a href="#"> <i class="icon-calendar"></i><span>6月</span> </a> </li>
+						  <li m=7 style="min-width:50px !important;" class="active"><a href="#"> <i class="icon-calendar"></i><span>7月</span> </a> </li>
+						  <li m=8 style="min-width:50px !important;" class=""><a href="#"> <i class="icon-calendar"></i><span>8月</span> </a> </li>
+						  <li m=9 style="min-width:50px !important;" class=""><a href="#"> <i class="icon-calendar"></i><span>9月</span> </a> </li>
+						  <li m=10 style="min-width:50px !important;" class=""><a href="#"> <i class="icon-calendar"></i><span>10月</span> </a> </li>
+						  <li m=11 style="min-width:50px !important;" class=""><a href="#"> <i class="icon-calendar"></i><span>11月</span> </a> </li>
+						  <li m=12 style="min-width:50px !important;" class=""><a href="#"> <i class="icon-calendar"></i><span>12月</span> </a> </li>
+						  <li><button type="button"  style="min-width:80px !important;height:60px;" class="btn btn-info" data-toggle="modal" data-target="#importModal">导入</button></li>
 							
 						   
 						  </ul>
@@ -130,7 +126,7 @@
 					</div>
 					<!-- /subnavbar -->
               <div class="widget big-stats-container">
-                <div class="widget-content">
+                <div class="widget-content" id="index_main_container_div">
 				
                   <table class="table table-condensed table-hover ">
 					  <thead>

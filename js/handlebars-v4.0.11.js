@@ -4842,5 +4842,5 @@ return /******/ (function(modules) { // webpackBootstrap
 /**                  modify by sam to add function as list request
 /**************************************************************************************/
 Handlebars.registerHelper("addOne",function(index){this._index = index+1; return this._index;});
-Handlebars.registerHelper("toDate",function(date){date = date.split("T")[0]; return date});
+Handlebars.registerHelper("toDate",function(date){if(!date) return"";date = date.split("T")[0]; return date});
 Handlebars.registerHelper("toDateTime",function(date){date = date?date.replace(".000+0000","").replace("T"," "):""; return date});
