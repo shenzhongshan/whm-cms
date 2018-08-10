@@ -4844,3 +4844,10 @@ return /******/ (function(modules) { // webpackBootstrap
 Handlebars.registerHelper("addOne",function(index){this._index = index+1; return this._index;});
 Handlebars.registerHelper("toDate",function(date){if(!date) return"";date = date.split("T")[0]; return date});
 Handlebars.registerHelper("toDateTime",function(date){date = date?date.replace(".000+0000","").replace("T"," "):""; return date});
+Handlebars.registerHelper("toGender",function(v){return v=="F"?"女":"男";});
+Handlebars.registerHelper("toPosition",function(v){
+	if(v=="PN001") return "主任";	if(v=="PN002") return "副主任";	if(v=="PN003") return "一般设计人员";
+});
+Handlebars.registerHelper("toJobTitle",function(v){
+	if(v=="JT001") return "教授级高级工程师";	if(v=="JT002") return "高级工程师";	if(v=="JT003") return "工程师"; if(v=="JT004") return "助理工程师"; if(v=="JT005") return "见习生";
+});

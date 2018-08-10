@@ -23,6 +23,7 @@ var main={
 		prj_query:"/whm/prj/list/",// http://120.0.0.1:9400/whm/prj/list/201807
 		prj_save:"/whm/prj/save",
 		prj_del:"/whm/prj/del/",// http://120.0.0.1:9400/whm/prj/del/201807
+		prj_import:"/whm/imp/prj",
 		prj_confirm:"/whm/prj/confirm/"// http://120.0.0.1:9400/whm/prj/confirm/201807
 	},
 	template:{
@@ -166,6 +167,29 @@ var main={
 			main.query_project_fn(main.curYear,main.curMonth);
 		}
 		main.post_json_data( url,null,callback_fn); 
+	},
+	import_prj_fn:function(){ 
+		var prjForm = new FormData();
+		prjForm.append("file",$('#import-employ_file')[0].files[0]);
+		prjForm.append("month",main.curSelYearMonth);
+		$.ajax({
+		    url: main.api_url.prj_import,
+		    type: 'POST',
+		    cache: false,
+		    beforeSend: function(xhr) { 
+	        	 xhr.setRequestHeader("Authorization", main.authorization); 
+	        	 xhr.setRequestHeader("Token", main.token); 
+	         },
+		    data: prjForm,
+		    processData: false,
+		    contentType: false
+		}).done(function(res) {
+			alert('导入成功！');
+			$("#main_import_btn_close").click();
+		}).fail(function(res) {
+			$("#main_import_btn_close").click();
+			alert('导入失败！')
+		}); 
 	},
 	logout_fn:function(){ 
 		$.cookie('authorization', null, { expires: -1, path: '/' });

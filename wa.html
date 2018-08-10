@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="utf-8">
-<title>Dashboard - Bootstrap Admin Template</title>
+<title>员工工天管理 考勤管理</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <link href="css/bootstrap.min.css" rel="stylesheet">
@@ -103,9 +103,42 @@
 			  </span>
             </div>
             <!-- /widget-header -->
-            <div class="widget-content">
-              <div class="widget big-stats-container">
-                 <table class="table table-condensed table-hover ">
+            <div class="">
+            <div class="subnavbar">
+					  <div class="subnavbar-inner">
+						<div class="container">
+						
+						 <ul class="mainnav">
+						   <li  > <i class=" icon-book1"></i><span>
+						   <select id="index_header_year_select" style="width:100px !important;height:60px;font-size: 20px;font-weight: bold;"><option>2016年</option><option>2017年</option><option>2018年</option><option>2019年</option></select>
+						   
+						   </span>  </li>
+						  <li  m=1 style="min-width:62px !important;" class=""><a href="#"> <i class="icon-calendar"></i><span>1月</span> </a> </li>
+						  <li  m=2 style="min-width:62px !important;" class=""><a href="#"> <i class="icon-calendar"></i><span>2月</span> </a> </li>
+						  <li m=3 style="min-width:62px !important;" class=""><a href="#"> <i class="icon-calendar"></i><span>3月</span> </a> </li>
+						  <li m=4 style="min-width:62px !important;" class=""><a href="#"> <i class="icon-calendar"></i><span>4月</span> </a> </li>
+						  <li m=5 style="min-width:62px !important;" class=""><a href="#"> <i class="icon-calendar"></i><span>5月</span> </a> </li>
+						  <li m=6 style="min-width:62px !important;" class=""><a href="#"> <i class="icon-calendar"></i><span>6月</span> </a> </li>
+						  <li m=7 style="min-width:62px !important;" class="active"><a href="#"> <i class="icon-calendar"></i><span>7月</span> </a> </li>
+						  <li m=8 style="min-width:62px !important;" class=""><a href="#"> <i class="icon-calendar"></i><span>8月</span> </a> </li>
+						  <li m=9 style="min-width:62px !important;" class=""><a href="#"> <i class="icon-calendar"></i><span>9月</span> </a> </li>
+						  <li m=10 style="min-width:62px !important;" class=""><a href="#"> <i class="icon-calendar"></i><span>10月</span> </a> </li>
+						  <li m=11 style="min-width:62px !important;" class=""><a href="#"> <i class="icon-calendar"></i><span>11月</span> </a> </li>
+						  <li m=12 style="min-width:62px !important;" class=""><a href="#"> <i class="icon-calendar"></i><span>12月</span> </a> </li>
+						  
+							
+						   
+						  </ul>
+						</div>
+						<!-- /container --> 
+					  </div>
+					  <!-- /subnavbar-inner --> 
+					</div>
+					<!-- /subnavbar -->
+					
+              <div class="widget big-stats-container container"  >
+               <div class="widget-content" id="index_main_container_div">
+                 <table class="table table-condensed table-hover " >
 					  <thead>
 						<tr class="success">
 						  <th scope="col" width="70px">#</th>
@@ -185,7 +218,7 @@
 						</tr>
 					  </tbody>
 					</table>
-						 
+						 </div>
 				</div>
                 </div>
                 <!-- /widget-content --> 
@@ -223,14 +256,14 @@
 				<table>
 					<tr>
 						<td>请选择要导入的文件</td>	
-						<td>:</td><td><input type=file /></td>
+						<td>:</td><td><form id="uploadForm" enctype="multipart/form-data"><input type=file name="file" id="import-employ_file" /></form></td>
 					</tr> 
 				</table>
 			
 			</div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
-                <button type="button" class="btn btn-primary">导入</button>
+             <button type="button" class="btn btn-default" data-dismiss="modal" id="wa_import_btn_close">关闭</button>
+                <button type="button" class="btn btn-primary" onclick="wa.import_wa_fn();">导入</button>
             </div>
         </div><!-- /.modal-content -->
     </div><!-- /.modal -->
@@ -255,8 +288,9 @@
 ================================================== --> 
 <!-- Placed at the end of the document so the pages load faster --> 
 <script src="js/jquery-1.7.2.min.js"></script> 
-<script src="js/excanvas.min.js"></script>  
+<script src="js/jquery.cookie.js"></script>
 <script src="js/bootstrap.js"></script> 
-<script src="js/base.js"></script>  
+<script src="js/handlebars-v4.0.11.js"></script>  
+<script src="js/wa.js"></script>  
 </body>
 </html>
