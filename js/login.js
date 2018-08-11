@@ -2,7 +2,7 @@
 var whm={
 	token_flag:'Bearer ',
 	contentType:'application/json;charset=utf-8',
-	login_url:'whm/login',
+	login_url:'/whm/login',
 	login_fn:function(){
 		 $.ajax({
 	         url: whm.login_url,
