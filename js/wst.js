@@ -25,8 +25,8 @@ var wst={
 		wts_query:"/whm/wts/report/",// http://120.0.0.1:9400/whm/wts/report/201807,
 	},
 	template:{
-		wst:function(){ return wst.get_template("js/wstTemplate.js");},
-		editWst:function(){return wst.get_template("js/editWstAdminTemplate.js");}
+		wst:function(){ return wst.get_template("template/wstTemplate.fl");},
+		editWst:function(){return wst.get_template("template/editWstAdminTemplate.fl");}
 	},
 	get_template:function(path){
 		var template = $.ajax({url:path,async:false});  

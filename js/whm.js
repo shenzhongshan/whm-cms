@@ -28,8 +28,8 @@ var whm={
 		prj_query:"/whm/prj/list/"// http://120.0.0.1:9400/whm/prj/list/201807
 	},
 	template:{
-		index:function(){ return whm.get_template("js/indexTemplate.js");},
-		editWst:function(){return whm.get_template("js/editWstTemplate.js");}
+		index:function(){ return whm.get_template("template/indexTemplate.fl");},
+		editWst:function(){return whm.get_template("template/editWstTemplate.fl");}
 	},
 	get_template:function(path){
 		var template = $.ajax({url:path,async:false});  

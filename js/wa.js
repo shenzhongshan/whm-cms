@@ -26,8 +26,8 @@ var wa={
 		wa_query:"/whm/wa/list/",// http://120.0.0.1:9400/whm/wts/list/1,9999
 	},
 	template:{
-		wa:function(){ return wa.get_template("js/waTemplate.js");},
-		editWa:function(){return wa.get_template("js/editWaTemplate.js");}
+		wa:function(){ return wa.get_template("template/waTemplate.fl");},
+		editWa:function(){return wa.get_template("template/editWaTemplate.fl");}
 	},
 	get_template:function(path){
 		var template = $.ajax({url:path,async:false});  

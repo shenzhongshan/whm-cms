@@ -27,8 +27,8 @@ var main={
 		prj_confirm:"/whm/prj/confirm/"// http://120.0.0.1:9400/whm/prj/confirm/201807
 	},
 	template:{
-		projects:function(){ return main.get_template("js/projectTemplate.js");},
-		editProject:function(){return main.get_template("js/editProjectTemplate.js");}
+		projects:function(){ return main.get_template("template/projectTemplate.fl");},
+		editProject:function(){return main.get_template("template/editProjectTemplate.fl");}
 	},
 	get_template:function(path){
 		var template = $.ajax({url:path,async:false});  

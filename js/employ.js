@@ -26,8 +26,8 @@ var employ={
 		employ_query:"/whm/users/list/",// http://120.0.0.1:9400/whm/wts/list/1,9999
 	},
 	template:{
-		employ:function(){ return employ.get_template("js/employTemplate.js");},
-		editEmploy:function(){return employ.get_template("js/editEmployTemplate.js");}
+		employ:function(){ return employ.get_template("template/employTemplate.fl");},
+		editEmploy:function(){return employ.get_template("template/editEmployTemplate.fl");}
 	},
 	get_template:function(path){
 		var template = $.ajax({url:path,async:false});  
