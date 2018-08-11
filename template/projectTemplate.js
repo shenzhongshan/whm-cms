@@ -8,7 +8,7 @@
 	  <th scope="col">项目标准</th>
 	  <th scope="col">项目类型</th> 
 	  <th scope="col">项目规模</th> 
-	  <th scope="col">最后更新</th> 
+	 
 	  <th scope="col"><button type="button" onclick="main.edit_project_fn({{id}});" class="btn btn-info">新增</button> {{#if status }}  <button type="button" class="btn btn-success" onclick="main.confirm_prj_fn('{{month}}');">确认</button>{{/if}}</th> 
 	</tr>
   </thead>
@@ -22,7 +22,7 @@
 	  <td>{{standard}}</td> 
 	  <td>{{type}}</td>
 	  <td>{{scale}}</td> 
-	  <td>{{toDateTime updateDate}}</td>
+	   
 	  <td>
 	  {{#if status }}
 	  	已确认

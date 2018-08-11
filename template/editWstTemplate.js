@@ -12,6 +12,8 @@
                  <form id="edit-wst-form" class="form-horizontal">
                  	<input type=hidden name='id' value="{{ts.id}}"/>
                 	<input type=hidden name='staffId' value="{{ts.staffId}}"/>
+                	<input type=hidden name='month' value="{{month}}"/> 
+                	<input type=hidden name='status' value="{{status}}"/> 
 									<fieldset>
 										<br/>
 										<div class="control-group">											
@@ -20,7 +22,7 @@
                                                <div class="input-prepend input-append">
                                                  <select name=prjId id="sel_prjId">
                                                  {{#each project}} 
-													<option value={{id}}>{{name}}</option>
+													<option value={{prjId}}>{{name}}</option>
 												 {{/each}} 											
 												 </select>
                                                 </div>

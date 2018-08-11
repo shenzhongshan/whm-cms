@@ -20,8 +20,7 @@
 						  <th scope="col">项目类型</th>
 						  <th scope="col">本人任职</th>
 						  <th scope="col">本月起始日期</th>
-						  <th scope="col">本月结束日期</th>
-						  <th scope="col">更新时间</th>
+						  <th scope="col">本月结束日期</th> 
 						  <th scope="col"></th> 
 						</tr>
 					  </thead>
@@ -37,8 +36,7 @@
 							  <td>{{project.type}}</td>
 							  <td>{{prjPosition}}</td>
 							  <td>{{toDate startDate}}</td>
-							  <td>{{toDate endDate}}</td>
-							  <td>{{toDateTime updateTime}}</td>
+							  <td>{{toDate endDate}}</td> 
 							 <td>
 							 {{#if status }}
 							 	已提交

@@ -28,8 +28,8 @@ var whm={
 		prj_query:"/whm/prj/list/"// http://120.0.0.1:9400/whm/prj/list/201807
 	},
 	template:{
-		index:function(){ return whm.get_template("template/indexTemplate.fl");},
-		editWst:function(){return whm.get_template("template/editWstTemplate.fl");}
+		index:function(){ return whm.get_template("template/indexTemplate.js");},
+		editWst:function(){return whm.get_template("template/editWstTemplate.js");}
 	},
 	get_template:function(path){
 		var template = $.ajax({url:path,async:false});  
@@ -136,6 +136,7 @@ var whm={
 				whm.curWstList = adpter.worksheets;
 				$.each(adpter.worksheets,function(i,t){status = (t.status==0);});
 				adpter.status = status;
+				debugger;
 			}else {
 				adpter = {status:status,month:whm.curSelYearMonth};
 			} 
@@ -160,6 +161,7 @@ var whm={
 		var html = template({project:prj,days:days,month:whm.curSelYearMonth,saveBtn:lable,ts:curSt});  
 		container.html(html);
 		var toDate = function(date){ date =(date+"").split("T")[0];  return date; }
+		if(!curSt.project) return;
 		$("#sel_prjId").val(curSt.project.id);
 		$("#sel_prjPhase").val(curSt.prjPhase);
 		$("#sel_prjPosition").val(curSt.prjPosition);
@@ -183,9 +185,8 @@ var whm={
 		}
 		whm.post_json_data( url,null,callback_fn); 
 	},
-	submit_wts_fn:function(){
-		debugger;
-		var url = whm.api_url.wts_submit+whm.curSelYearMonth+","+whm.loginStaffId;
+	submit_wts_fn:function(){ 
+		var url = whm.api_url.wts_submit+whm.curSelYearMonth;
 		var callback_fn = function(data, textStatus, request){
 			alert('提交成功');
 			whm.query_wts_fn(whm.curYear,whm.curMonth);

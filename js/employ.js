@@ -26,8 +26,8 @@ var employ={
 		employ_query:"/whm/users/list/",// http://120.0.0.1:9400/whm/wts/list/1,9999
 	},
 	template:{
-		employ:function(){ return employ.get_template("template/employTemplate.fl");},
-		editEmploy:function(){return employ.get_template("template/editEmployTemplate.fl");}
+		employ:function(){ return employ.get_template("template/employTemplate.js");},
+		editEmploy:function(){return employ.get_template("template/editEmployTemplate.js");}
 	},
 	get_template:function(path){
 		var template = $.ajax({url:path,async:false});  
@@ -94,8 +94,8 @@ var employ={
 			 
 			container.html(html);
 		}
-		var data = {},condition = $("#staffid_search_input").val();data.user={};
-		if(condition){data.user.staffName = condition;}
+		var data = {},condition = $("#staffid_search_input").val();
+		if(condition){data.staffName = condition;}
 		data = JSON.stringify( data );
 		var url=employ.api_url.employ_query+"1,9999"; 
 		employ.get_json_data(url,data,callback_fn,"POST");
