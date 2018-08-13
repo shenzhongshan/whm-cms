@@ -18,7 +18,7 @@
 						<tr>
 						  <th scope="row">{{addOne @index}}</th>
 						  <td>{{staffId}}</td>
-						  <td>{{staffId}}</td>
+						  <td>{{staffName}}</td>
 						 
 						  <td>{{monthOccurRate}}</td>
 						  <td>{{monthFillRate}}</td> 
