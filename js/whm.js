@@ -134,7 +134,7 @@ var whm={
 			if(context[0]) { 
 				adpter = context[0];
 				whm.curWstList = adpter.worksheets;
-				$.each(adpter.worksheets,function(i,t){status = (t.status==0);});
+				$.each(adpter.worksheets,function(i,t){status = (t.status!=0 && t.status != null);});
 				adpter.status = status;
 				debugger;
 			}else {
@@ -173,6 +173,7 @@ var whm={
 		wstData.project={};wstData.project.id=wstData.prjId;
 		wstData = JSON.stringify( wstData );
 		var callback_fn = function(data, textStatus, request){
+			whm.query_wts_fn(whm.curYear,whm.curMonth);
 			alert('保存成功');
 		}
 		whm.post_json_data( whm.api_url.wts_save,wstData,callback_fn); 

@@ -24,6 +24,7 @@ var employ={
 		employ_del:"/whm/users/del/",// http://120.0.0.1:9400/whm/wts/del/1,
 		employ_import:"/whm/imp/staff",// http://120.0.0.1:9400/whm/wts/del/1,
 		employ_query:"/whm/users/list/",// http://120.0.0.1:9400/whm/wts/list/1,9999
+		employ_resetPwd:"/whm/users/resetPwd"
 	},
 	template:{
 		employ:function(){ return employ.get_template("template/employTemplate.js");},
@@ -128,6 +129,16 @@ var employ={
 			employ.query_employ_fn(employ.curYear,employ.curMonth);
 		}
 		employ.post_json_data( url,null,callback_fn); 
+	},
+	reset_password_fn:function(username){
+		var url = employ.api_url.employ_resetPwd;
+		var callback_fn = function(data, textStatus, request){
+			alert('重置成功'); 
+		}
+		var emData = {};
+		emData.username=username;
+		emData = JSON.stringify( emData );
+		employ.post_json_data( url,emData,callback_fn); 
 	},
 	import_empoly_fn:function(){ 
 		$.ajax({
