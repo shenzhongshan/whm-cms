@@ -37,7 +37,26 @@
 										<div class="control-group">											
 											<label class="control-label" for="password2">项目标准</label>
 											<div class="controls">
-												<input type="text" class="span4" name="standard" value="{{prj.standard}}">
+												<!--input type="text" class="span4" name="standard" value="{{prj.standard}}"-->
+												<select  name="standard" id="sel_standard">
+													<option value='铁路专用线'>铁路专用线</option>
+													<option value='货运专线120以下'>货运专线120以下</option>
+													<option value='客货共线120'>客货共线120</option>
+													<option value='客货共线160'>客货共线160</option>
+													<option value='客货共线200'>客货共线200</option>
+													<option value='客运专线250'>客运专线250</option>
+													<option value='客运专线300'>客运专线300</option>
+													<option value='客运专线350'>客运专线350</option>
+													<option value='城际铁路160'>城际铁路160</option>
+													<option value='城际铁路200'>城际铁路200</option>
+													<option value='城际铁路250'>城际铁路250</option>
+													<option value='市政广场'>市政广场</option>
+													<option value='市政规划'>市政规划</option>
+													<option value='市政道路'>市政道路</option>
+													<option value='公路一级'>公路一级</option>
+													<option value='公路二级'>公路二级</option>
+													
+												</select>
 											</div> <!-- /controls -->				
 										</div> <!-- /control-group --> 
 										
@@ -45,7 +64,22 @@
 										<div class="control-group">											
 											<label class="control-label">项目类型</label>
 											<div class="controls">
-												<input type="text" class="span4" name="type" value="{{prj.type}}">
+												<!--input type="text" class="span4" name="type" value="{{prj.type}}"-->
+												<select  name="type" id="sel_type">
+													<option value='院控铁路A类'>院控铁路A类</option>
+													<option value='院控铁路B类'>院控铁路B类</option>
+													<option value='院控铁路C类'>院控铁路C类</option>
+													<option value='自揽铁路A类'>自揽铁路A类</option>
+													<option value='自揽铁路B类'>自揽铁路B类</option>
+													<option value='自揽铁路C类'>自揽铁路C类</option>
+													<option value='自揽市政A类'>自揽市政A类</option>
+													<option value='自揽市政B类'>自揽市政B类</option>
+													<option value='自揽公路A类'>自揽公路A类</option>
+													<option value='自揽公路B类'>自揽公路B类</option>
+													<option value='自揽其它A类'>自揽其它A类</option>
+													<option value='自揽其它B类'>自揽其它B类</option> 
+													
+												</select>
 											</div> <!-- /controls -->	
 										</div> <!-- /control-group --> 
 										

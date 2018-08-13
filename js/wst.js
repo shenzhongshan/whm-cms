@@ -22,11 +22,12 @@ var wst={
 	api_url:{  
 		wts_save:"/whm/wts/save",// http://120.0.0.1:9400/whm/wts/report/201807,
 		wts_del:"/whm/wts/del/",// http://120.0.0.1:9400/whm/wts/del/1,
+		wts_export:"/whm/imp/excelReport/",// http://120.0.0.1:9400/whm/wts/del/1,
 		wts_query:"/whm/wts/report/",// http://120.0.0.1:9400/whm/wts/report/201807,
 	},
 	template:{
-		wst:function(){ return wst.get_template("js/wstTemplate.js");},
-		editWst:function(){return wst.get_template("js/editWstAdminTemplate.js");}
+		wst:function(){ return wst.get_template("template/wstTemplate.js");},
+		editWst:function(){return wst.get_template("template/editWstAdminTemplate.js");}
 	},
 	get_template:function(path){
 		var template = $.ajax({url:path,async:false});  
@@ -152,6 +153,14 @@ var wst={
 			wst.query_wts_fn(wst.curYear,wst.curMonth);
 		}
 		wst.post_json_data( url,null,callback_fn); 
+	},
+	export_report_fn:function(){
+		var year = $("#index_header_year_select").val();
+		var url = wst.api_url.wts_export+year;
+		var callback_fn = function(data, textStatus, request){ 
+			debugger;
+		}
+		wst.get_json_data(url,null,callback_fn,"GET");
 	},
 	logout_fn:function(){ 
 		$.cookie('authorization', null, { expires: -1, path: '/' });

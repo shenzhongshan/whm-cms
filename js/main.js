@@ -27,8 +27,8 @@ var main={
 		prj_confirm:"/whm/prj/confirm/"// http://120.0.0.1:9400/whm/prj/confirm/201807
 	},
 	template:{
-		projects:function(){ return main.get_template("js/projectTemplate.js");},
-		editProject:function(){return main.get_template("js/editProjectTemplate.js");}
+		projects:function(){ return main.get_template("template/projectTemplate.js");},
+		editProject:function(){return main.get_template("template/editProjectTemplate.js");}
 	},
 	get_template:function(path){
 		var template = $.ajax({url:path,async:false});  
@@ -140,7 +140,9 @@ var main={
 		adpter.prj = main.get_local_project_by_id(prjId); 
 		var html = template(adpter);  
 		container.html(html);
-		
+		if(!adpter.prj) return;
+		$("#sel_standard").val(adpter.prj.standard);
+		$("#sel_type").val(adpter.prj.type);
 	},
 	save_project_fn:function(){
 		var prjData = $("#edit-project-form").serializeObject(); 
@@ -185,9 +187,9 @@ var main={
 		    contentType: false
 		}).done(function(res) {
 			alert('导入成功！');
-			$("#main_import_btn_close").click();
+			main.query_project_fn(main.curYear,main.curMonth);
 		}).fail(function(res) {
-			$("#main_import_btn_close").click();
+			main.query_project_fn(main.curYear,main.curMonth);
 			alert('导入失败！')
 		}); 
 	},
