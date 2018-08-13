@@ -157,10 +157,12 @@ var wst={
 	export_report_fn:function(){
 		var year = $("#index_header_year_select").val();
 		var url = wst.api_url.wts_export+year;
-		var callback_fn = function(data, textStatus, request){ 
-			debugger;
-		}
-		wst.get_json_data(url,null,callback_fn,"GET");
+		$("#exportExcelA").attr("href",url);
+		//$("#exportExcelA").trigger("click");
+		//var callback_fn = function(data, textStatus, request){ 
+		//	debugger;
+		//}
+		//wst.get_json_data(url,null,callback_fn,"GET");
 	},
 	logout_fn:function(){ 
 		$.cookie('authorization', null, { expires: -1, path: '/' });
