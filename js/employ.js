@@ -97,7 +97,7 @@ var employ={
 		var data = {},condition = $("#staffid_search_input").val();
 		if(condition){data.staffName = condition;}
 		data = JSON.stringify( data );
-		var url=employ.api_url.employ_query+"1,9999"; 
+		var url=employ.api_url.employ_query+"0,9999"; 
 		employ.get_json_data(url,data,callback_fn,"POST");
 		
 	},
