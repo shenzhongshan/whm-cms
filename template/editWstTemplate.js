@@ -95,8 +95,8 @@
 										 <br /> 
 											
 										<div class="form-actions">
-											<button type="button" onclick="whm.save_wts_fn();" class="btn btn-primary">{{saveBtn}}</button> 
-											<a href="javascript:void" onclick="whm.return_cur_index_fn();" class="btn">取消</a>
+											<button type="button" onclick="whm.save_wts_fn();" class="btn btn-primary">保存</button> 
+											<a href="javascript:void" onclick="whm.return_cur_index_fn();" class="btn">返回</a>
 										</div> <!-- /form-actions -->
 									</fieldset>
 								</form>
