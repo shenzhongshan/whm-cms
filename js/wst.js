@@ -28,6 +28,7 @@ var wst={
 		for(var i=year-3;i<year+3;i++){
 			yearSelect.append("<option "+(year==i?"selected":"")+" value='"+i+"'>"+i+"</option>");
 		}
+		yearSelect.on({change:wst.year_select_fn}); 
 		navLis.removeClass("active");
 		$(navLis[month]).addClass("active");
 		navLis.on({click:wst.month_select_fn,dbclick:wst.month_select_fn});
@@ -43,6 +44,10 @@ var wst={
 			});
 		}); 
 		return ts;
+	},
+	year_select_fn:function(){
+		var yearSelect=$("#index_header_year_select"); 
+		wst.query_wts_fn(yearSelect.val(),wst.curMonth);
 	},
 	month_select_fn:function(){
 		var year = $("#index_header_year_select").val();

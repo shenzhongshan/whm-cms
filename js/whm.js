@@ -34,6 +34,7 @@ var whm={
 		for(var i=year-3;i<year+3;i++){
 			yearSelect.append("<option "+(year==i?"selected":"")+" value='"+i+"'>"+i+"</option>");
 		}
+		yearSelect.on({change:whm.year_select_fn}); 
 		navLis.removeClass("active");
 		$(navLis[month]).addClass("active");
 		navLis.on({click:whm.month_select_fn,dbclick:whm.month_select_fn});
@@ -46,9 +47,14 @@ var whm={
 		}
 		whm.init_year_fn();		
 	}, 
+	year_select_fn:function(){
+		var yearSelect=$("#index_header_year_select"); 
+		whm.query_wts_fn(yearSelect.val(),whm.curMonth);
+	},
 	month_select_fn:function(){
 		var year = $("#index_header_year_select").val();
 		var month = $(this).attr("m");
+		if(!month) return;
 		$(".mainnav li").removeClass("active");
 		$(this).addClass("active"); 
 		whm.query_wts_fn(year,month);
