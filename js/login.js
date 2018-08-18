@@ -1,14 +1,11 @@
-//var token = 'Bearer ' + currUser.token;
-var whm={
-	token_flag:'Bearer ',
-	contentType:'application/json;charset=utf-8',
+var whm={ 
 	login_url:'/whm/login',
 	login_fn:function(){
 		 $.ajax({
 	         url: whm.login_url,
 	         data: whm.login_para(),  
 	         dataType: 'JSON',
-	         contentType: whm.contentType,
+	         contentType: base.contentType,
 	         type: 'POST',
 	         success: whm.login_success_fn,
 	         error: whm.login_error_fn
@@ -31,7 +28,7 @@ var whm={
 		document.location.replace("/whm/index.html"); 
 	},
 	login_error_fn:function(){
-		alert("登陆失败");
+		$.error("登陆失败,用户名或密码错误,请重新输入后再尝试");
 	}
 }
 

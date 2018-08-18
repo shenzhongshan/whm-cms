@@ -1,24 +1,5 @@
-$.fn.serializeObject = function()
-{
-	var o = {};
-	var a = this.serializeArray();
-	$.each(a, function() {
-		if (o[this.name] !== undefined) {
-			if (!o[this.name].push) {
-				o[this.name] = [o[this.name]];
-			}
-			o[this.name].push(this.value || '');
-		} else {
-			o[this.name] = this.value || '';
-		}
-	});
-	return o;
-}; 
 var employ={
-	token_flag:'Bearer ',
-	contentType:'application/json;charset=utf-8',
-	uploadContentType:'application/x-www-form-urlencoded',
-	authorization:'',token:'',loginUser:'',curEmploys:[],
+	curEmploys:[],
 	api_url:{  
 		employ_save:"/whm/users/save",// http://120.0.0.1:9400/whm/wts/report/201807,
 		employ_del:"/whm/users/del/",// http://120.0.0.1:9400/whm/wts/del/1,
@@ -27,48 +8,16 @@ var employ={
 		employ_resetPwd:"/whm/users/resetPwd"
 	},
 	template:{
-		employ:function(){ return employ.get_template("template/employTemplate.js");},
-		editEmploy:function(){return employ.get_template("template/editEmployTemplate.js");}
-	},
-	get_template:function(path){
-		var template = $.ajax({url:path,async:false});  
-		return Handlebars.compile(template.responseText);
+		employ:function(){ return base.get_template("template/employTemplate.js");},
+		editEmploy:function(){return base.get_template("template/editEmployTemplate.js");}
 	}, 
-	call_json_data:function(url,param,callback_fn,method,contentType){
-		$.ajax({
-	         url: url,
-	         data: param?param:[],  
-	         dataType: 'JSON',
-	         async:false,
-	         beforeSend: function(xhr) { 
-	        	 xhr.setRequestHeader("Authorization", employ.authorization); 
-	        	 xhr.setRequestHeader("Token", employ.token); 
-	         },
-	         contentType: contentType?contentType:employ.contentType,
-	         type: method?method:'POST',
-	         success: callback_fn,
-	         error: employ.post_error_fn
-	     });
-	},
-	get_json_data:function(url,param,callback_fn,method){
-		employ.call_json_data(url,param,callback_fn,method,employ.contentType);
-	},
-	post_json_data:function(url,param,callback_fn){
-		employ.get_json_data(url,param,callback_fn,"POST");
-	},
 	init_fn:function(){
-		if(!$.cookie('login_user')){
-			alert('未登陆，请登陆后访问该功能');
-			employ.logout_fn();
-		}
-		employ.loginUser=$.cookie('login_user');
-		employ.authorization=$.cookie('authorization');
-		employ.token=$.cookie('token');
+		base.init_sys();
 		employ.init_header_fn(); 
-		$("#index_header_logout_li").on({click:employ.logout_fn,dblclick:employ.logout_fn});
+		$("#index_header_logout_li").on({click:base.logout_fn,dblclick:base.logout_fn});
 	},
 	init_header_fn:function(){ 
-		var loginUser = $.cookie('login_user'),userLi = $("#index_header_admin_li");
+		var loginUser = base.loginUser,userLi = $("#index_header_admin_li");
 		$("#index_header_login_user").html("<i class='icon-cog'></i> "+loginUser); 
 		 
 	}, 
@@ -99,7 +48,7 @@ var employ={
 		if(condition){data.staffName = condition;}
 		data = JSON.stringify( data );
 		var url=employ.api_url.employ_query+"0,9999"; 
-		employ.get_json_data(url,data,callback_fn,"POST");
+		base.get_json_data(url,data,callback_fn,"POST");
 		
 	},
 	edit_employ_fn:function(employId){ 
@@ -118,27 +67,32 @@ var employ={
 		var emData = $("#edit-employ-form").serializeObject(); 
 		emData = JSON.stringify( emData );
 		var callback_fn = function(data, textStatus, request){
-			alert('保存成功');
+			$.success('保存成功',function(){employ.query_employ_fn(employ.curYear,employ.curMonth);}); 
 		}
-		employ.post_json_data( employ.api_url.employ_save,emData,callback_fn); 
+		base.post_json_data( employ.api_url.employ_save,emData,callback_fn); 
 	},
 	del_employ_fn:function(id){
 		var url = employ.api_url.employ_del+id;
-		var callback_fn = function(data, textStatus, request){
-			alert('删除成功');
-			employ.query_employ_fn(employ.curYear,employ.curMonth);
+		var del = function(){
+			var callback_fn = function(data, textStatus, request){
+				$.alert('删除成功',function(){employ.query_employ_fn(employ.curYear,employ.curMonth);}); 
+			}
+			base.post_json_data( url,null,callback_fn); 
 		}
-		employ.post_json_data( url,null,callback_fn); 
+		$.confirm("是否删除该数据?",del);
 	},
 	reset_password_fn:function(username){
 		var url = employ.api_url.employ_resetPwd;
-		var callback_fn = function(data, textStatus, request){
-			alert('重置成功'); 
+		var reset = function(){
+			var callback_fn = function(data, textStatus, request){
+				$.success('重置成功'); 
+			}
+			var emData = {};
+			emData.username=username;
+			emData = JSON.stringify( emData );
+			base.post_json_data( url,emData,callback_fn); 
 		}
-		var emData = {};
-		emData.username=username;
-		emData = JSON.stringify( emData );
-		employ.post_json_data( url,emData,callback_fn); 
+		$.confirm("是否重置该员工的密码?",reset);
 	},
 	import_empoly_fn:function(){ 
 		$.ajax({
@@ -146,31 +100,22 @@ var employ={
 		    type: 'POST',
 		    cache: false,
 		    beforeSend: function(xhr) { 
-	        	 xhr.setRequestHeader("Authorization", employ.authorization); 
-	        	 xhr.setRequestHeader("Token", employ.token); 
+	        	 xhr.setRequestHeader("Authorization", base.authorization); 
+	        	 xhr.setRequestHeader("Token", base.token); 
 	         },
 		    data: new FormData($('#uploadForm')[0]),
 		    processData: false,
 		    contentType: false
-		}).done(function(res) {
-			alert('导入成功！');
+		}).done(function(res) { 
 			$("#employ_import_btn_close").click();
+			$.success('导入成功！',function(){employ.query_employ_fn(employ.curYear,employ.curMonth);});
 		}).fail(function(res) {
 			$("#employ_import_btn_close").click();
-			alert('导入失败！')
+			$.error('导入失败！')
 		}); 
-	},
-	logout_fn:function(){ 
-		$.cookie('authorization', null, { expires: -1, path: '/' });
-		$.cookie('token', null, { expires: -1, path: '/' }); 
-		$.cookie('login_user', null, { expires: -1, path: '/' });
-		document.location.replace("/whm/login.html"); 
-	},
+	}, 
 	return_cur_index_fn:function(){ 
 		employ.query_employ_fn();
-	},
-	post_error_fn:function(){
-		alert("操作失败");
 	}
 }
 $(document).ready(function(){

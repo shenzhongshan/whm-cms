@@ -1,24 +1,6 @@
-$.fn.serializeObject = function()
-{
-	var o = {};
-	var a = this.serializeArray();
-	$.each(a, function() {
-		if (o[this.name] !== undefined) {
-			if (!o[this.name].push) {
-				o[this.name] = [o[this.name]];
-			}
-			o[this.name].push(this.value || '');
-		} else {
-			o[this.name] = this.value || '';
-		}
-	});
-	return o;
-};
-var wst={
-	token_flag:'Bearer ',
-	contentType:'application/json;charset=utf-8',
-	curYear:2010,	curMonth:1,	curSelYearMonth:201010,
-	authorization:'',token:'',loginUser:'',curWst:[],
+
+var wst={ 
+	curYear:2010,	curMonth:1,	curSelYearMonth:201010, curWst:[],
 	api_url:{  
 		wts_save:"/whm/wts/save",// http://120.0.0.1:9400/whm/wts/report/201807,
 		wts_del:"/whm/wts/del/",// http://120.0.0.1:9400/whm/wts/del/1,
@@ -26,58 +8,16 @@ var wst={
 		wts_query:"/whm/wts/report/",// http://120.0.0.1:9400/whm/wts/report/201807,
 	},
 	template:{
-		wst:function(){ return wst.get_template("template/wstTemplate.js");},
-		editWst:function(){return wst.get_template("template/editWstAdminTemplate.js");}
-	},
-	get_template:function(path){
-		var template = $.ajax({url:path,async:false});  
-		return Handlebars.compile(template.responseText);
+		wst:function(){ return base.get_template("template/wstTemplate.js");},
+		editWst:function(){return base.get_template("template/editWstAdminTemplate.js");}
 	}, 
-	get_json_data:function(url,param,callback_fn,method){
-		$.ajax({
-	         url: url,
-	         data: param?param:[],  
-	         dataType: 'JSON',
-	         async:false,
-	         beforeSend: function(xhr) { 
-	        	 xhr.setRequestHeader("Authorization", wst.authorization); 
-	        	 xhr.setRequestHeader("Token", wst.token); 
-	         },
-	         contentType: wst.contentType,
-	         type: method?method:'POST',
-	         success: callback_fn,
-	         error: wst.post_error_fn
-	     });
-	},
-	post_json_data:function(url,param,callback_fn){
-		$.ajax({
-	         url: url,
-	         data: param,  
-	         dataType: 'JSON',
-	         async:false,
-	         beforeSend: function(xhr) { 
-	        	 xhr.setRequestHeader("Authorization", wst.authorization); 
-	        	 xhr.setRequestHeader("Token", wst.token); 
-	         },
-	         contentType: wst.contentType,
-	         type:'POST',
-	         success: callback_fn,
-	         error: wst.post_error_fn
-	     });
-	},
 	init_fn:function(){
-		if(!$.cookie('login_user')){
-			alert('未登陆，请登陆后访问该功能');
-			wst.logout_fn();
-		}
-		wst.loginUser=$.cookie('login_user');
-		wst.authorization=$.cookie('authorization');
-		wst.token=$.cookie('token');
+		base.init_sys();
 		wst.init_header_fn(); 
-		$("#index_header_logout_li").on({click:wst.logout_fn,dblclick:wst.logout_fn});
+		$("#index_header_logout_li").on({click:base.logout_fn,dblclick:base.logout_fn});
 	},
 	init_header_fn:function(){ 
-		var loginUser = $.cookie('login_user'),userLi = $("#index_header_admin_li");
+		var loginUser = base.loginUser,userLi = $("#index_header_admin_li");
 		$("#index_header_login_user").html("<i class='icon-cog'></i> "+loginUser); 
 		wst.init_year_fn();		
 	},
@@ -95,8 +35,7 @@ var wst={
 	get_local_wst_by_id:function(wstId){
 		var ts = null;
 		if(!wst.curWst) return ts;
-		if(wst.curWst.sumCount<1) return ts;
-		
+		if(wst.curWst.sumCount<1) return ts; 
 		$.each(wst.curWst.report,function(i,t){
 			$.each(t.worksheets,function(k,y){ 
 				console.log(y.id);
@@ -131,7 +70,7 @@ var wst={
 			container.html(html);
 		}
 		var url=wst.api_url.wts_query+wst.curSelYearMonth+","; 
-		wst.get_json_data(url,null,callback_fn,"GET");
+		base.get_json_data(url,null,callback_fn,"GET");
 		
 	},
 	approve_Wst_fn:function(wstId){ 
@@ -148,18 +87,19 @@ var wst={
 		wstData.project={};wstData.project.id=wstData.prjId;
 		wstData = JSON.stringify( wstData );
 		var callback_fn = function(data, textStatus, request){
-			alert('保存成功');
-			wst.return_cur_index_fn();
+			$.success('保存成功',wst.return_cur_index_fn);
 		}
-		wst.post_json_data( wst.api_url.wts_save,wstData,callback_fn); 
+		base.post_json_data( wst.api_url.wts_save,wstData,callback_fn); 
 	},
 	del_wts_fn:function(id){
 		var url = wst.api_url.wts_del+id;
-		var callback_fn = function(data, textStatus, request){
-			alert('删除成功');
-			wst.query_wts_fn(wst.curYear,wst.curMonth);
+		var del = function(){
+			var callback_fn = function(data, textStatus, request){
+				$.alert('删除成功',function(){wst.query_wts_fn(wst.curYear,wst.curMonth);}); 
+			}
+			base.post_json_data( url,null,callback_fn); 
 		}
-		wst.post_json_data( url,null,callback_fn); 
+		$.confirm("是否删除该数据?",del);
 	},
 	export_report_fn:function(){ 
 		wst.tmpExcel("wst-table-report-list");
@@ -173,19 +113,10 @@ var wst={
 		excelData = "<table border=1>"+tmpExcelFilter(excelData)+"</table>"
 		var url='data:application/vnd.ms-excel,' + encodeURIComponent(excelData) ;
 		location.href=url;
-	},
-	logout_fn:function(){ 
-		$.cookie('authorization', null, { expires: -1, path: '/' });
-		$.cookie('token', null, { expires: -1, path: '/' }); 
-		$.cookie('login_user', null, { expires: -1, path: '/' });
-		document.location.replace("/whm/login.html"); 
-	},
+	}, 
 	return_cur_index_fn:function(){ 
 		wst.query_wts_fn(wst.curYear,wst.curMonth);
-	},
-	post_error_fn:function(){
-		alert("操作失败");
-	}
+	} 
 }
 $(document).ready(function(){
 	wst.init_fn();

@@ -1,24 +1,5 @@
-$.fn.serializeObject = function()
-{
-	var o = {};
-	var a = this.serializeArray();
-	$.each(a, function() {
-		if (o[this.name] !== undefined) {
-			if (!o[this.name].push) {
-				o[this.name] = [o[this.name]];
-			}
-			o[this.name].push(this.value || '');
-		} else {
-			o[this.name] = this.value || '';
-		}
-	});
-	return o;
-};
-var whm={
-	token_flag:'Bearer ',
-	contentType:'application/json;charset=utf-8',
-	curYear:2010,	curMonth:1,	curSelYearMonth:201010,
-	authorization:'',token:'',loginUser:'',loginStaffId:804019,
+var whm={ 
+	curYear:2010,	curMonth:1,	curSelYearMonth:201010, 
 	curWstList:[],
 	api_url:{ 
 		wts_submit:"/whm/wts/submit/",// http://120.0.0.1:9400/whm/wts/submit/month,staffId
@@ -28,45 +9,9 @@ var whm={
 		prj_query:"/whm/prj/list/"// http://120.0.0.1:9400/whm/prj/list/201807
 	},
 	template:{
-		index:function(){ return whm.get_template("template/indexTemplate.js");},
-		editWst:function(){return whm.get_template("template/editWstTemplate.js");}
-	},
-	get_template:function(path){
-		var template = $.ajax({url:path,async:false});  
-		return Handlebars.compile(template.responseText);
+		index:function(){ return base.get_template("template/indexTemplate.js");},
+		editWst:function(){return base.get_template("template/editWstTemplate.js");}
 	}, 
-	get_json_data:function(url,param,callback_fn,method){
-		$.ajax({
-	         url: url,
-	         data: param?param:[],  
-	         dataType: 'JSON',
-	         async:false,
-	         beforeSend: function(xhr) { 
-	        	 xhr.setRequestHeader("Authorization", whm.authorization); 
-	        	 xhr.setRequestHeader("Token", whm.token); 
-	         },
-	         contentType: whm.contentType,
-	         type: method?method:'POST',
-	         success: callback_fn,
-	         error: whm.post_error_fn
-	     });
-	},
-	post_json_data:function(url,param,callback_fn){
-		$.ajax({
-	         url: url,
-	         data: param,  
-	         dataType: 'JSON',
-	         async:false,
-	         beforeSend: function(xhr) { 
-	        	 xhr.setRequestHeader("Authorization", whm.authorization); 
-	        	 xhr.setRequestHeader("Token", whm.token); 
-	         },
-	         contentType: whm.contentType,
-	         type:'POST',
-	         success: callback_fn,
-	         error: whm.post_error_fn
-	     });
-	},
 	get_local_wst_by_id:function(wstId){
 		var ts = null;
 		if(!whm.curWstList) return ts;
@@ -78,15 +23,9 @@ var whm={
 		return ts;
 	},
 	init_fn:function(){
-		if(!$.cookie('login_user')){
-			alert('未登陆，请登陆后访问该功能');
-			whm.logout_fn();
-		}
-		whm.loginUser=$.cookie('login_user');
-		whm.authorization=$.cookie('authorization');
-		whm.token=$.cookie('token');
+		base.init_sys();
 		whm.init_header_fn(); 
-		$("#index_header_logout_li").on({click:whm.logout_fn,dblclick:whm.logout_fn});
+		$("#index_header_logout_li").on({click:base.logout_fn,dblclick:base.logout_fn});
 	},
 	init_year_fn:function(){
 		var date=new Date,year=date.getFullYear(),month=date.getMonth()+1,navLis=$(".mainnav li"),
@@ -106,13 +45,7 @@ var whm={
 			userLi.html("<a href=\"main.html\"><i class=\"icon-star\"></i> 管理员</a>"); 
 		}
 		whm.init_year_fn();		
-	},
-	logout_fn:function(){ 
-		$.cookie('authorization', null, { expires: -1, path: '/' });
-		$.cookie('token', null, { expires: -1, path: '/' }); 
-		$.cookie('login_user', null, { expires: -1, path: '/' });
-		document.location.replace("/whm/login.html"); 
-	},
+	}, 
 	month_select_fn:function(){
 		var year = $("#index_header_year_select").val();
 		var month = $(this).attr("m");
@@ -135,16 +68,15 @@ var whm={
 				adpter = context[0];
 				whm.curWstList = adpter.worksheets;
 				$.each(adpter.worksheets,function(i,t){status = (t.status!=0 && t.status != null);});
-				adpter.status = status;
-				debugger;
+				adpter.status = status; 
 			}else {
 				adpter = {status:status,month:whm.curSelYearMonth};
 			} 
 			var html = template(adpter);  
 			container.html(html);
 		}
-		var url=whm.api_url.wts_query+whm.curSelYearMonth+","+whm.loginUser; 
-		whm.get_json_data(url,null,callback_fn,"GET");
+		var url=whm.api_url.wts_query+whm.curSelYearMonth+","+base.loginUser; 
+		base.get_json_data(url,null,callback_fn,"GET");
 		
 	},
 	edit_Wst_fn:function(lable,wstId){ 
@@ -161,7 +93,7 @@ var whm={
 		var html = template({project:prj,days:days,month:whm.curSelYearMonth,saveBtn:lable,ts:curSt});  
 		container.html(html);
 		var toDate = function(date){ date =(date+"").split("T")[0];  return date; }
-		if(!curSt.project) return;
+		if(curSt) {if(!curSt.project) return;} else {return;}
 		$("#sel_prjId").val(curSt.project.id);
 		$("#sel_prjPhase").val(curSt.prjPhase);
 		$("#sel_prjPosition").val(curSt.prjPosition);
@@ -172,27 +104,31 @@ var whm={
 		var wstData = $("#edit-wst-form").serializeObject();
 		wstData.project={};wstData.project.id=wstData.prjId;
 		wstData = JSON.stringify( wstData );
-		var callback_fn = function(data, textStatus, request){
-			whm.query_wts_fn(whm.curYear,whm.curMonth);
-			alert('保存成功');
+		var callback_fn = function(data, textStatus, request){  
+			$.success('保存成功',function(){whm.query_wts_fn(whm.curYear,whm.curMonth);});
 		}
-		whm.post_json_data( whm.api_url.wts_save,wstData,callback_fn); 
+		base.post_json_data( whm.api_url.wts_save,wstData,callback_fn); 
 	},
 	del_wts_fn:function(id){
 		var url = whm.api_url.wts_del+id;
-		var callback_fn = function(data, textStatus, request){
-			alert('删除成功');
-			whm.query_wts_fn(whm.curYear,whm.curMonth);
+		
+		var del = function(){
+			base.post_json_data( url,null,function(data, textStatus, request){
+				$.alert('删除成功',function(){whm.query_wts_fn(whm.curYear,whm.curMonth);}); 
+			}); 
 		}
-		whm.post_json_data( url,null,callback_fn); 
+		$.confirm("是否删除该数据?",del);
+		
 	},
 	submit_wts_fn:function(){ 
 		var url = whm.api_url.wts_submit+whm.curSelYearMonth;
-		var callback_fn = function(data, textStatus, request){
-			alert('提交成功');
-			whm.query_wts_fn(whm.curYear,whm.curMonth);
+		var submit = function(){
+			var callback_fn = function(data, textStatus, request){
+				$.success('提交成功',function(){whm.query_wts_fn(whm.curYear,whm.curMonth);}); 
+			}
+			base.post_json_data( url,null,callback_fn); 
 		}
-		whm.post_json_data( url,null,callback_fn); 
+		$.confirm("是否提交该月数据,提交后该月数据将不可修改?",submit);
 	},
 	query_prj_fn:function(ym){
 		var url=whm.api_url.prj_query+ym,prj;
@@ -200,15 +136,12 @@ var whm={
 			var context = JSON.parse( request.responseText ); 
 			prj = context; 
 		}
-		whm.get_json_data(url,null,callback_fn,"POST");
+		base.get_json_data(url,null,callback_fn,"POST",false);
 		return prj;
 	},
 	return_cur_index_fn:function(){ 
 		whm.query_wts_fn(whm.curYear,whm.curMonth);
-	},
-	post_error_fn:function(){
-		alert("操作失败");
-	}
+	} 
 }
  
 $(document).ready(function(){
