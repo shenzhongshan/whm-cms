@@ -4844,6 +4844,16 @@ return /******/ (function(modules) { // webpackBootstrap
 Handlebars.registerHelper("addOne",function(index){this._index = index+1; return this._index;});
 Handlebars.registerHelper("toDate",function(date){if(!date) return"";date = date.split("T")[0]; return date});
 Handlebars.registerHelper("toDateTime",function(date){date = date?date.replace(".000+0000","").replace("T"," "):""; return date});
+Handlebars.registerHelper("toAge",function(date){
+	date = date?date.replace(".000+0000","").replace("T"," "):""; 
+	var date1=new Date(date); //开始时间
+	var date2=new Date(); //结束时间
+	var date3=date1.getTime()-date2.getTime(); //时间差秒
+	var days=Math.floor(date3/(24*3600*1000));
+	var year = Math.floor(days/365)*-1;
+	return year;
+	
+});
 Handlebars.registerHelper("toGender",function(v){return v=="F"?"女":"男";});
 Handlebars.registerHelper("toPosition",function(v){
 	if(v=="PN001") return "主任";	if(v=="PN002") return "副主任";	if(v=="PN003") return "一般设计人员";

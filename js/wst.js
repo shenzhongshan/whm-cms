@@ -161,15 +161,18 @@ var wst={
 		}
 		wst.post_json_data( url,null,callback_fn); 
 	},
-	export_report_fn:function(){
-		var year = $("#index_header_year_select").val();
-		var url = wst.api_url.wts_export+year;
-		$("#exportExcelA").attr("href",url);
-		//$("#exportExcelA").trigger("click");
-		//var callback_fn = function(data, textStatus, request){ 
-		//	debugger;
-		//}
-		//wst.get_json_data(url,null,callback_fn,"GET");
+	export_report_fn:function(){ 
+		wst.tmpExcel("wst-table-report-list");
+	},
+	tmpExcel:function(tableId){
+		var tmpExcelFilter = function(value){
+			var reg = /<[^>]*>/gi;
+			return value ? value.replace(/评定/g,"") : "";
+		}
+		var excelData = $("#"+tableId).html(); 
+		excelData = "<table border=1>"+tmpExcelFilter(excelData)+"</table>"
+		var url='data:application/vnd.ms-excel,' + encodeURIComponent(excelData) ;
+		location.href=url;
 	},
 	logout_fn:function(){ 
 		$.cookie('authorization', null, { expires: -1, path: '/' });

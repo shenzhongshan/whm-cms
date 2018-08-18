@@ -8,7 +8,7 @@
             <div class="widget-content">
               <div class="widget">
                 <div class=""> 
-					<table class="table table-hover table-striped" width="600">
+					<table class="table table-hover table-striped" id="wst-table-report-list">
 					  <thead>
 						<tr class="success">
 						  <th scope="col" >序号</th>
@@ -47,7 +47,7 @@
 							  <td>{{staff.username}}</td>
 							  <td>{{staff.staffName}}</td>
 							  <td>{{toGender staff.gender}}</td>
-							  <td>{{toDate staff.birthDate}}</td>
+							  <td>{{toAge staff.birthDate}}</td>
 							  <td>{{toJobTitle staff.jobTitle}}</td>
 							  <td>{{toPosition staff.position}}</td>
 							  <td>{{staff.level}}</td>
@@ -69,7 +69,7 @@
 							  <td>{{toDate endDate}}</td>
 							  <td>{{workComfirm}}</td>
 							  <td>{{points}}</td>
-							  <td> <a class="btn btn-primary"  href="javascript:void" onclick="wst.approve_Wst_fn({{id}});" >评定</a> </td>  
+							  <td> <button class="btn btn-primary"  href="javascript:void" onclick="wst.approve_Wst_fn({{id}});" >评定</button> </td>  
 							 
 							</tr>
 							{{/each}} 
