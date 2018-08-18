@@ -93,7 +93,7 @@ var main={
 		prjData = JSON.stringify( prjData );  
 		var callback_fn = function(data, textStatus, request){ 
 			$.success('保存成功',function(){main.query_project_fn(main.curYear,main.curMonth);}); 
-		}
+		} 
 		base.post_json_data( main.api_url.prj_save,prjData,callback_fn); 
 		
 	},
