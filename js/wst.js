@@ -95,11 +95,14 @@ var wst={
 	get_local_wst_by_id:function(wstId){
 		var ts = null;
 		if(!wst.curWst) return ts;
-		if(wst.curWst.length<1) return ts;
+		if(wst.curWst.sumCount<1) return ts;
 		
-		$.each(wst.curWst,function(i,t){
-			if(t.id == wstId) {ts = t;return false;}
-		});
+		$.each(wst.curWst.report,function(i,t){
+			$.each(t.worksheets,function(k,y){ 
+				console.log(y.id);
+				if(y.id == wstId) {ts = y;return false;}
+			});
+		}); 
 		return ts;
 	},
 	month_select_fn:function(){
@@ -120,8 +123,11 @@ var wst={
 		var context = { title: "zhaoshuai", prj: [{prjId:201232,prjPhase:'fef',project:{name:'testprj',standard:5,scale:'sdf',type:'大型'},prjPosition:'研究员',startDate:'2018-01-01',endDate:'2018-08-09',updateTime:'2018-98-04 23:59:23'}]};
 		var callback_fn = function(data, textStatus, request){
 			var context = JSON.parse( request.responseText );  
-			wst.curWst = context[0]?(context[0].worksheets):wst.curWst;
-			var html = template(context[0]);  
+			var wstList = {};
+			wstList.report = context;
+			wstList.sumCount = (context&&context.length>0)?context.length:0;
+			wst.curWst = wstList;
+			var html = template(wstList);  
 			container.html(html);
 		}
 		var url=wst.api_url.wts_query+wst.curSelYearMonth+","; 
@@ -143,6 +149,7 @@ var wst={
 		wstData = JSON.stringify( wstData );
 		var callback_fn = function(data, textStatus, request){
 			alert('保存成功');
+			wst.return_cur_index_fn();
 		}
 		wst.post_json_data( wst.api_url.wts_save,wstData,callback_fn); 
 	},

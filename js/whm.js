@@ -143,7 +143,7 @@ var whm={
 			var html = template(adpter);  
 			container.html(html);
 		}
-		var url=whm.api_url.wts_query+whm.curSelYearMonth+","; 
+		var url=whm.api_url.wts_query+whm.curSelYearMonth+","+whm.loginUser; 
 		whm.get_json_data(url,null,callback_fn,"GET");
 		
 	},
