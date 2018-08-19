@@ -101,7 +101,7 @@
 										 <br /> 
 											
 										<div class="form-actions">
-											<button type="submit" onclick="main.save_project_fn()" class="btn btn-primary">保存</button> 											
+											<button type="button" onclick="main.save_project_fn()" class="btn btn-primary">保存</button> 											
 											<a href="javascript:void" onclick="main.return_cur_index_fn()" class="btn">返回</a>
 										</div> <!-- /form-actions -->
 									</fieldset>
