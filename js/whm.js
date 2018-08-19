@@ -5,7 +5,7 @@ var whm={
 		wts_submit:"/whm/wts/submit/",// http://120.0.0.1:9400/whm/wts/submit/month,staffId
 		wts_save:"/whm/wts/save",// http://120.0.0.1:9400/whm/wts/report/201807,
 		wts_del:"/whm/wts/del/",// http://120.0.0.1:9400/whm/wts/del/1,
-		wts_query:"/whm/wts/report/",// http://120.0.0.1:9400/whm/wts/report/201807,
+		wts_query:"/whm/wts/listByCurrentUser/",// http://120.0.0.1:9400/whm/wts/report/201807,
 		prj_query:"/whm/prj/list/"// http://120.0.0.1:9400/whm/prj/list/201807
 	},
 	template:{
@@ -69,9 +69,9 @@ var whm={
 		var context = { title: "zhaoshuai", prj: [{prjId:201232,prjPhase:'fef',project:{name:'testprj',standard:5,scale:'sdf',type:'大型'},prjPosition:'研究员',startDate:'2018-01-01',endDate:'2018-08-09',updateTime:'2018-98-04 23:59:23'}]};
 		var callback_fn = function(data, textStatus, request){
 			var context = JSON.parse( request.responseText );  
-			var status = false,adpter = "";
-			if(context[0]) { 
-				adpter = context[0];
+			var status = false,adpter = {};
+			if(context) { 
+				adpter.worksheets = context;
 				whm.curWstList = adpter.worksheets;
 				$.each(adpter.worksheets,function(i,t){status = (t.status!=0 && t.status != null);});
 				adpter.status = status; 
@@ -81,7 +81,7 @@ var whm={
 			var html = template(adpter);  
 			container.html(html);
 		}
-		var url=whm.api_url.wts_query+whm.curSelYearMonth+","+base.loginUser; 
+		var url=whm.api_url.wts_query+whm.curSelYearMonth; 
 		base.get_json_data(url,null,callback_fn,"GET");
 		
 	},
@@ -99,8 +99,8 @@ var whm={
 		var html = template({project:prj,days:days,month:whm.curSelYearMonth,saveBtn:lable,ts:curSt});  
 		container.html(html);
 		var toDate = function(date){ date =(date+"").split("T")[0];  return date; }
-		if(curSt) {if(!curSt.project) return;} else {return;}
-		$("#sel_prjId").val(curSt.project.id);
+		if(curSt) {if(!curSt.project) return;} else {return;} 
+		$("#sel_prjId").val(curSt.prjId);
 		$("#sel_prjPhase").val(curSt.prjPhase);
 		$("#sel_prjPosition").val(curSt.prjPosition);
 		$("#sel_startDate").val(toDate(curSt.startDate));
@@ -137,10 +137,10 @@ var whm={
 		$.confirm("是否提交该月数据,提交后该月数据将不可修改?",submit);
 	},
 	query_prj_fn:function(ym){
-		var url=whm.api_url.prj_query+ym,prj;
+		var url=whm.api_url.prj_query+ym,prj=[];
 		var callback_fn = function(data, textStatus, request){
-			var context = JSON.parse( request.responseText ); 
-			prj = context; 
+			var context = JSON.parse( request.responseText );
+			$.each(context,function(i,t){if(t.status==1) prj.push(t);}); 
 		}
 		base.get_json_data(url,null,callback_fn,"POST",false);
 		return prj;
