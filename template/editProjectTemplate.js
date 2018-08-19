@@ -1,6 +1,6 @@
 <div class="widget widget-nopad">
             <div class="widget-header"> <i class="icon-list-ol"></i>
-              <h3> {{month}}编辑项目信息</h3> 
+              <h3> {{month}} {{saveBtn}} 项目信息</h3> 
             </div>
             <!-- /widget-header -->
             <div class="widget-content">
