@@ -107,7 +107,10 @@ var wst={
 		$.confirm("是否删除该数据?",del);
 	},
 	export_report_fn:function(){ 
-		wst.tmpExcel("wst-table-report-list");
+		//wst.tmpExcel("wst-table-report-list");
+		var year = $("#index_header_year_select").val();
+		var url = wst.api_url.wts_export+year; 
+		$("#exportExcelA").attr("href",url);
 	},
 	tmpExcel:function(tableId){
 		var tmpExcelFilter = function(value){
