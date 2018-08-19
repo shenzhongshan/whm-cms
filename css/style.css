@@ -101,7 +101,7 @@ textarea {
 */
 
 .subnavbar {
-    	margin-bottom: 2.5em;
+    	margin-bottom: 10px;
     }
     
 .subnavbar-inner {
@@ -113,7 +113,7 @@ textarea {
 .subnavbar .container > ul {
 	display: inline-block;
 	
-	height: 80px;
+	height: 50px;
 	padding: 0;
 	margin: 0;
 	
@@ -326,7 +326,7 @@ textarea {
 	
 	width: auto;
 	
-	margin-bottom: 2em;
+	margin-bottom: 0px;
 		
 	overflow: hidden;
 }
