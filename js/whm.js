@@ -25,7 +25,7 @@ var whm={
 	init_fn:function(){
 		base.init_sys();
 		whm.init_header_fn(); 
-		$("#index_header_logout_li").on({click:base.logout_fn,dblclick:base.logout_fn});
+		$("#index_header_logout_li").on({click:base.logout_fn,dblclick:base.logout_fn}); 
 	},
 	init_year_fn:function(){
 		var date=new Date,year=date.getFullYear(),month=date.getMonth()+1,navLis=$(".mainnav li"),

@@ -10,8 +10,7 @@
 <link href="http://fonts.googleapis.com/css?family=Open+Sans:400italic,600italic,400,600"
         rel="stylesheet">
 <link href="css/font-awesome.css" rel="stylesheet">
-<link href="css/style.css" rel="stylesheet">
- 
+<link href="css/style.css" rel="stylesheet"> 
 </head>
 <body>
 <div class="navbar navbar-fixed-top">
@@ -153,16 +152,23 @@
         <div class="modal-content">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                <h4 class="modal-title" id="importModalLabel">项目日志信息</h4>
+                <h4 class="modal-title" id="importModalLabel">导入项目信息</h4>
             </div>
             <div class="modal-body">
-				<table>
-					<tr>
-						<td>请选择要导入的文件</td>	
-						<td>:</td><td><form id="uploadForm" enctype="multipart/form-data"><input type=file name="file" id="import-employ_file" /></form></td>
-					</tr> 
-				</table>
-			
+            <form id="uploadForm" enctype="multipart/form-data">
+            <div class="inputFileWrapper">
+	            <label for="import-employ_file">
+			        <input type="file" id="import-employ_file" name="file" />
+			        <span class="custorm-style">
+			            <span class="left-button">项目</span>
+			            <span class="right-text" id="rightText">请选择要导入的文件....</span>
+			        </span>
+			    </label>
+			</div>
+ 			</form> 		
+            	
+			 
+						
 			</div>
             <div class="modal-footer">
                <button type="button" class="btn btn-default" data-dismiss="modal" id="main_import_btn_close">关闭</button>

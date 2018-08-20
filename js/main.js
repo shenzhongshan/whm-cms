@@ -15,6 +15,12 @@ var main={
 		base.init_sys();
 		main.init_header_fn(); 
 		$("#index_header_logout_li").on({click:base.logout_fn,dblclick:base.logout_fn});
+		var fileBtn = $("input[type=file]");
+		fileBtn.on("change", function(){
+		    var index = $(this).val().lastIndexOf("\\");
+		    var sFileName = $(this).val().substr((index+1));
+		    $("#rightText").html(sFileName);
+		});
 	},
 	init_header_fn:function(){ 
 		var loginUser = base.loginUser,userLi = $("#index_header_admin_li");
