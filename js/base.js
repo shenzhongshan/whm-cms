@@ -133,7 +133,8 @@ var base = {
 		},
 		init_sys:function(){
 			if(!$.cookie('login_user')){
-				$.error('未登陆，请登陆后访问该功能',function(){base.logout_fn();}); 
+				$.error('未登陆，请登陆后访问该功能',base.logout_fn); 
+				throw new Error("未登陆，请登陆后访问该功能");
 			}
 			base.loginUser=$.cookie('login_user');
 			base.isAdmin=$.cookie('isAdmin');
