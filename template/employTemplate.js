@@ -25,7 +25,7 @@
 						  <td>{{level}}</td>
 						  
 						  <td>
-						  <button type="button" class="btn btn-primary " onclick="employ.edit_employ_fn({{id}});">编辑</button> <button type="button" class="btn btn-warning " onclick="employ.reset_password_fn({{username}});">重置密码</button>  <button type="button" class="btn btn-primary " onclick="employ.del_employ_fn({{id}});">删除</button>
+						  <button type="button" class="btn btn-primary " onclick="employ.edit_employ_fn({{id}});">编辑</button> <button type="button" class="btn btn-warning " onclick="employ.reset_password_fn('{{username}}');">重置密码</button>  <button type="button" class="btn btn-primary " onclick="employ.del_employ_fn({{id}});">删除</button>
 						  </td>						  
 						</tr>
 						{{/each}} 
