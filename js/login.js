@@ -20,9 +20,12 @@ var whm={
 	},
 	login_success_fn:function(data, textStatus, request){
 		var authorization = request.getResponseHeader("Authorization"); 
+		var isAdmin = request.getResponseHeader("is_admin");
+		isAdmin = eval(isAdmin);
 		var token = authorization.replace(whm.token_flag,"");
 		$.cookie('authorization', authorization, { expires: 1, path: '/' });
 		$.cookie('token', token, { expires: 1, path: '/' }); 
+		$.cookie('isAdmin', isAdmin, { expires: 1, path: '/' }); 
 		$.cookie('login_user', $("#username").val(), { expires: 1, path: '/' });
 		console.log(authorization);
 		document.location.replace("/whm/index.html"); 

@@ -96,7 +96,7 @@ var base = {
 		token_flag:'Bearer ',
 		contentType:'application/json;charset=utf-8',
 		uploadContentType:'application/x-www-form-urlencoded',
-		authorization:'',token:'',loginUser:'',loginStaffId:804019,
+		authorization:'',token:'',loginUser:'',loginStaffId:804019,isAdmin:false,
 		get_template:function(path){
 			var template = $.ajax({url:path,async:false});  
 			return Handlebars.compile(template.responseText);
@@ -136,6 +136,7 @@ var base = {
 				$.error('未登陆，请登陆后访问该功能',function(){base.logout_fn();}); 
 			}
 			base.loginUser=$.cookie('login_user');
+			base.isAdmin=$.cookie('isAdmin');
 			base.authorization=$.cookie('authorization');
 			base.token=$.cookie('token');
 		},

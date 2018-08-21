@@ -42,7 +42,7 @@ var whm={
 	init_header_fn:function(){ 
 		var loginUser = $.cookie('login_user'),userLi = $("#index_header_admin_li");
 		$("#index_header_login_user").html("<i class='icon-cog'></i> "+loginUser);
-		if(loginUser=="admin"){
+		if(base.isAdmin){
 			userLi.html("<a href=\"main.html\"><i class=\"icon-star\"></i> 管理员</a>"); 
 		}
 		whm.init_year_fn();		
