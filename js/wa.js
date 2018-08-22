@@ -102,8 +102,7 @@ var wa={
 		var url = wa.api_url.wa_del+id;
 		var del = function(){
 			var callback_fn = function(data, textStatus, request){
-				alert('删除成功');
-				wa.query_wa_fn(wa.curYear,wa.curMonth);
+				$.alert('删除成功',function(){wa.query_wa_fn(wa.curYear,wa.curMonth);});  
 			}
 			base.post_json_data( url,null,callback_fn); 
 		}
