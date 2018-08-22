@@ -105,7 +105,7 @@ var wa={
 				alert('删除成功');
 				wa.query_wa_fn(wa.curYear,wa.curMonth);
 			}
-			wa.post_json_data( url,null,callback_fn); 
+			base.post_json_data( url,null,callback_fn); 
 		}
 		$.confirm("是否删除该数据?",del);
 	},
