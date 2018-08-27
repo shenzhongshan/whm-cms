@@ -23,8 +23,7 @@ var main={
 		});
 	},
 	init_header_fn:function(){ 
-		var loginUser = base.loginUser,userLi = $("#index_header_admin_li");
-		$("#index_header_login_user").html("<i class='icon-cog'></i> "+loginUser); 
+		base.init_header_fn();
 		main.init_year_fn();		
 	},
 	init_year_fn:function(){

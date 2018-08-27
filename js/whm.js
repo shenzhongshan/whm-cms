@@ -40,16 +40,7 @@ var whm={
 		navLis.on({click:whm.month_select_fn,dbclick:whm.month_select_fn});
 	},
 	init_header_fn:function(){ 
-		var loginUser = $.cookie('login_user'),userLi = $("#index_header_admin_li");
-		$("#index_header_login_user").html("<i class='icon-cog'></i> "+loginUser+" <b class=\"caret\"></b>");
-		if(eval(base.isAdmin)){ 
-			$(" <li class='li-preilve-a'><a href=\"index.html\"><i class=\"icon-signal\"></i>个人日志填报</a></li> ").insertAfter(userLi);
-			$(" <li class='li-preilve-a'><a href=\"projectWorkSheet.html\"><i class=\"icon-user\"></i> 员工管理</a></li> ").insertAfter(userLi); 
-			$(" <li class='li-preilve-a'><a href=\"main.html\"><i class=\"icon-group\"></i> 考勤考入</a></li> ").insertAfter(userLi); 
-			$(" <li class='li-preilve-a'><a href=\"wa.html\"><i class=\"icon-table\"></i> 项目导入</a></li> ").insertAfter(userLi); 
-			$(" <li class='li-preilve-a'><a href=\"employ.html\"><i class=\"icon-signal\"></i> 项目负荷排名</a></li> ").insertAfter(userLi); 
-			 
-		} 
+		base.init_header_fn();
 		whm.init_year_fn();		
 	}, 
 	year_select_fn:function(){
