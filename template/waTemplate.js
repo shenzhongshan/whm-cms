@@ -9,7 +9,7 @@
 						  <th scope="col">正班人次识别率</th>
 						  <th scope="col">工时填报率</th>
 						 
-						  <th scope="col"> <button class="btn btn-info" data-toggle="modal" data-target="#importModal">导入考勤</button></th> 
+						  <th scope="col"> </th> 
 						   
 						</tr>
 					  </thead>
