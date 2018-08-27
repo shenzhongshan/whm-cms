@@ -147,7 +147,7 @@ var base = {
 			if(eval(base.isAdmin)){ 
 				$(" <li class='li-preilve-a'><a href=\"index.html\"><i class=\"icon-book\"></i> 个人工天填报</a></li> ").insertAfter(userLi);
 				$(" <li class='li-preilve-a'><a href=\"employ.html\"><i class=\"icon-user\"></i> 员工管理</a></li> ").insertAfter(userLi); 
-				$(" <li class='li-preilve-a'><a href=\"wa.html\"><i class=\"icon-group\"></i> 考勤考入</a></li> ").insertAfter(userLi); 
+				$(" <li class='li-preilve-a'><a href=\"wa.html\"><i class=\"icon-group\"></i> 考勤导入</a></li> ").insertAfter(userLi); 
 				$(" <li class='li-preilve-a'><a href=\"main.html\"><i class=\"icon-table\"></i> 项目导入</a></li> ").insertAfter(userLi); 
 				$(" <li class='li-preilve-a'><a href=\"projectWorkSheet.html\"><i class=\"icon-signal\"></i> 项目负荷排名</a></li> ").insertAfter(userLi); 
 	 		} 
