@@ -41,10 +41,13 @@ var whm={
 	},
 	init_header_fn:function(){ 
 		var loginUser = $.cookie('login_user'),userLi = $("#index_header_admin_li");
-		$("#index_header_login_user").html("<i class='icon-cog'></i> "+loginUser);
-		if(base.isAdmin){
-			userLi.html("<a href=\"main.html\"><i class=\"icon-star\"></i> 管理员</a>"); 
-		}
+		$("#index_header_login_user").html("<i class='icon-cog'></i> "+loginUser+" <b class=\"caret\"></b>");
+		if(eval(base.isAdmin)){ 
+			$(" <li class='li-preilve-a'><a href=\"projectWorkSheet.html\"><i class=\"icon-user\"></i> 员工管理</a></li> ").insertAfter(userLi); 
+			$(" <li class='li-preilve-a'><a href=\"main.html\"><i class=\"icon-group\"></i> 考勤考入</a></li> ").insertAfter(userLi); 
+			$(" <li class='li-preilve-a'><a href=\"wa.html\"><i class=\"icon-table\"></i> 项目导入</a></li> ").insertAfter(userLi); 
+			$(" <li class='li-preilve-a'><a href=\"employ.html\"><i class=\"icon-signal\"></i> 项目负荷排名</a></li> ").insertAfter(userLi); 
+		} 
 		whm.init_year_fn();		
 	}, 
 	year_select_fn:function(){
