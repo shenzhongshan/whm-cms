@@ -28,7 +28,7 @@ var whm={
 		$.cookie('isAdmin', isAdmin, { expires: 1, path: '/' }); 
 		$.cookie('login_user', $("#username").val(), { expires: 1, path: '/' });
 		console.log(authorization);
-		document.location.replace("/whm/index.html"); 
+		document.location.replace(isAdmin?"/whm/main.html":"/whm/index.html"); 
 	},
 	login_error_fn:function(){
 		$.error("登陆失败,用户名或密码错误,请重新输入后再尝试");

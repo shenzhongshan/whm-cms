@@ -23,9 +23,7 @@ var employ={
 		});
 	},
 	init_header_fn:function(){ 
-		var loginUser = base.loginUser,userLi = $("#index_header_admin_li");
-		$("#index_header_login_user").html("<i class='icon-cog'></i> "+loginUser); 
-		 
+		base.init_header_fn(); 
 	}, 
 	get_local_employ_by_id:function(wstId){
 		var ts = null;

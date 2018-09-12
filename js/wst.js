@@ -17,8 +17,7 @@ var wst={
 		$("#index_header_logout_li").on({click:base.logout_fn,dblclick:base.logout_fn});
 	},
 	init_header_fn:function(){ 
-		var loginUser = base.loginUser,userLi = $("#index_header_admin_li");
-		$("#index_header_login_user").html("<i class='icon-cog'></i> "+loginUser); 
+		base.init_header_fn();
 		wst.init_year_fn();		
 	},
 	init_year_fn:function(){

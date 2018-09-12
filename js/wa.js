@@ -22,8 +22,7 @@ var wa={
 		});
 	},
 	init_header_fn:function(){ 
-		var loginUser = base.loginUser,userLi = $("#index_header_admin_li");
-		$("#index_header_login_user").html("<i class='icon-cog'></i> "+loginUser); 
+		base.init_header_fn();
 		wa.init_year_fn();		
 	},
 	init_year_fn:function(){
@@ -102,8 +101,7 @@ var wa={
 		var url = wa.api_url.wa_del+id;
 		var del = function(){
 			var callback_fn = function(data, textStatus, request){
-				alert('删除成功');
-				wa.query_wa_fn(wa.curYear,wa.curMonth);
+				$.alert('删除成功',function(){wa.query_wa_fn(wa.curYear,wa.curMonth);});  
 			}
 			base.post_json_data( url,null,callback_fn); 
 		}

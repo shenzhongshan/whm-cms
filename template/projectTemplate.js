@@ -1,3 +1,9 @@
+ <div class="widget-header"> <i class="icon-list-ol"></i>
+     <h3 >项目导入</h3> {{#if status }}
+     <button class="btn btn-info" style="float:right;margin-top:6px;margin-right:5%;" data-toggle="modal" data-target="#importModal">导入</button>
+     <button type="button" style="float:right;margin-top:6px;margin-right:5px;" onclick="main.edit_project_fn({{id}});" class="btn btn-info">新增</button>  
+     <button type="button" style="float:right;margin-top:6px;margin-right:5px;" class="btn btn-success" onclick="main.confirm_prj_fn('{{month}}');">确认</button>{{/if}}
+ </div>
  <table class="table table-condensed table-hover ">
   <thead>
 	<tr class="success">
@@ -11,7 +17,7 @@
 	  <th scope="col">项目总投资 Co(亿元)</th> 
 	  <th scope="col">地形等级 Te</th> 
 	 
-	  <th scope="col"><button type="button" onclick="main.edit_project_fn({{id}});" class="btn btn-info">新增</button> {{#if status }}  <button type="button" class="btn btn-success" onclick="main.confirm_prj_fn('{{month}}');">确认</button>{{/if}}</th> 
+	  <th scope="col"></th> 
 	</tr>
   </thead>
   <tbody>
