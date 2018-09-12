@@ -98,7 +98,7 @@
 										</div> <!-- /control-group -->
                                         
                                         <div class="control-group">											
-											<label class="control-label" for="radiobtns">项目总投资 Co(亿元 )</label>
+											<label class="control-label" for="radiobtns">项目总投资 Co(亿元)</label>
 											
                                             <div class="controls">
                                                <div class="input-prepend input-append">

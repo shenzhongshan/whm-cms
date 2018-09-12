@@ -76,7 +76,7 @@
 										</div> <!-- /control-group -->
 										
 										 <div class="control-group">											
-											<label class="control-label" for="radiobtns">分数</label>
+											<label class="control-label" for="radiobtns">本工作积点</label>
 											<div class="controls">
                                             <div class="input-prepend input-append">
                                             <input type="text" name="points" id="points" value="{{ points}}" /> 
