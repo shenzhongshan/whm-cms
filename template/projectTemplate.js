@@ -7,7 +7,9 @@
 	  <th scope="col">项目名称</th>
 	  <th scope="col">项目标准</th>
 	  <th scope="col">项目类型</th> 
-	  <th scope="col">项目规模</th> 
+	  <th scope="col">项目正线长度 L(km)</th> 
+	  <th scope="col">项目总投资 Co(亿元)</th> 
+	  <th scope="col">地形等级 Te</th> 
 	 
 	  <th scope="col"><button type="button" onclick="main.edit_project_fn({{id}});" class="btn btn-info">新增</button> {{#if status }}  <button type="button" class="btn btn-success" onclick="main.confirm_prj_fn('{{month}}');">确认</button>{{/if}}</th> 
 	</tr>
@@ -21,8 +23,9 @@
 	  <td>{{name}}</td>
 	  <td>{{standard}}</td> 
 	  <td>{{type}}</td>
-	  <td>{{scale}}</td> 
-	   
+	  <td>{{le}}</td> 
+	  <td>{{co}}</td> 
+	  <td>{{te}}</td> 
 	  <td>
 	  {{#if status }}
 	  	已确认

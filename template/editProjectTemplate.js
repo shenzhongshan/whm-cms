@@ -78,7 +78,8 @@
 													<option value='自揽公路B类'>自揽公路B类</option>
 													<option value='自揽其它A类'>自揽其它A类</option>
 													<option value='自揽其它B类'>自揽其它B类</option> 
-													
+													<option value='科研业建'>科研业建</option> 
+													<option value='助勤或学习'>助勤或学习</option> 
 												</select>
 											</div> <!-- /controls -->	
 										</div> <!-- /control-group --> 
@@ -87,16 +88,34 @@
 										
                                         
                                         <div class="control-group">											
-											<label class="control-label" for="radiobtns">项目规模</label>
+											<label class="control-label" for="radiobtns">项目正线长度 L(km)</label>
 											
                                             <div class="controls">
                                                <div class="input-prepend input-append">
-                                               <input type="text" class="span4" name="scale" value="{{prj.scale}}">
+                                               <input type="text" class="span4" name="le" value="{{prj.le}}">
                                                 </div>
                                               </div>	<!-- /controls -->			
 										</div> <!-- /control-group -->
                                         
-                                        
+                                        <div class="control-group">											
+											<label class="control-label" for="radiobtns">项目总投资 Co(亿元 )</label>
+											
+                                            <div class="controls">
+                                               <div class="input-prepend input-append">
+                                               <input type="text" class="span4" name="co" value="{{prj.co}}">
+                                                </div>
+                                              </div>	<!-- /controls -->			
+										</div> <!-- /control-group -->
+										
+                                        <div class="control-group">											
+											<label class="control-label" for="radiobtns">地形等级 Te</label>
+											
+                                            <div class="controls">
+                                               <div class="input-prepend input-append">
+                                               <input type="text" class="span4" name="te" value="{{prj.te}}">
+                                                </div>
+                                              </div>	<!-- /controls -->			
+										</div> <!-- /control-group -->
                                         
 										 <br /> 
 											
