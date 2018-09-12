@@ -19,7 +19,9 @@
 						  <th scope="col">项目名称</th>
 						  <th scope="col">项目阶段</th>
 						  <th scope="col">项目标准</th>
-						  <th scope="col">项目规模</th>
+	                      <th scope="col">正线长度L(km)</th> 
+	                      <th scope="col">总投资Co(亿元)</th> 
+	                      <th scope="col">地形等级Te</th> 
 						  <th scope="col">项目类型</th>
 						  <th scope="col">本人任职</th>
 						  <th scope="col">本月起始日期</th>
@@ -35,7 +37,9 @@
 							  <td>{{project.name}}</td>
 							  <td>{{prjPhase}}</td>
 							  <td>{{project.standard}}</td>
-							  <td>{{project.scale}}</td>
+							  <td>{{project.le}}</td>
+							  <td>{{project.co}}</td>
+							  <td>{{project.te}}</td>
 							  <td>{{project.type}}</td>
 							  <td>{{prjPosition}}</td>
 							  <td>{{toDate startDate}}</td>

@@ -9,14 +9,12 @@
 	<tr class="success">
 	  <th scope="col" width="70px"> {{month}} </th>
 	  <th scope="col">项目编号</th>
-	  <th scope="col">年月</th>
 	  <th scope="col">项目名称</th>
 	  <th scope="col">项目标准</th>
 	  <th scope="col">项目类型</th> 
-	  <th scope="col">项目正线长度 L(km)</th> 
-	  <th scope="col">项目总投资 Co(亿元)</th> 
-	  <th scope="col">地形等级 Te</th> 
-	 
+	  <th scope="col">正线长度L(km)</th> 
+	  <th scope="col">总投资Co(亿元)</th> 
+	  <th scope="col">地形等级Te</th> 
 	  <th scope="col"></th> 
 	</tr>
   </thead>
@@ -25,7 +23,6 @@
 	<tr>
 	  <th scope="row">{{addOne @index}}</th>
 	  <td>{{prjId}}</td>
-	  <td>{{month}}</td>
 	  <td>{{name}}</td>
 	  <td>{{standard}}</td> 
 	  <td>{{type}}</td>

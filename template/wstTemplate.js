@@ -62,7 +62,7 @@
 							  <th >{{project.name}}</th>
 							  <th >{{project.prjPhase}}</th>
 							  <th >{{project.standard}}</th>
-							  <th >{{project.scale}}</th>
+							  <th >{{project.co}}</th>
 							  <th >{{project.type}}</th>
 							  <td>{{prjPosition}}</td>
 							  <td>{{toDate startDate}}</td>

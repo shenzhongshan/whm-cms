@@ -69,11 +69,11 @@ var main={
 		var template = main.template.projects();
 		var callback_fn = function(data, textStatus, request){
 			var context = JSON.parse( request.responseText ); 
-			var status = false,adpter = {};
+			var status = true,adpter = {};
 			adpter.projects = context;
 			adpter.month = main.curSelYearMonth;
 			main.curPrj = adpter.projects;
-			$.each(adpter.projects,function(i,t){status = (t.status==0);});
+			$.each(adpter.projects,function(i,t){status = status && (t.status==0);});
 			adpter.status = status;
 			var html = template(adpter);  
 			container.html(html);
