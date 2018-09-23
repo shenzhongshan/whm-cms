@@ -80,7 +80,7 @@
 											<div class="controls">
                                             <div class="input-prepend input-append">
                                             <input type="text" name="points" id="points" value="{{ points}}" onblur="wst.eval_wts_fn();"/> 
-                                               
+                                               <button type="button" onclick="wst.eval_wts_fn('calc');" class="btn btn-primary">计算</button> 
                                              </div>
                                            </div>	<!-- /controls -->			
 										</div> <!-- /control-group -->

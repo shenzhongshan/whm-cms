@@ -96,9 +96,9 @@ var wst={
 		}
 		base.post_json_data( wst.api_url.wts_save,wstData,callback_fn); 
 	},
-	eval_wts_fn:function(){
+	eval_wts_fn:function(calc){
 		var wstData = $("#edit-wst-form").serializeObject();
-        if(parseFloat(wstData.points)>1){
+        if(!calc && parseFloat(wstData.points)>1){
 			return;
 		}
 		var callback_fn = function(data, textStatus, request){
