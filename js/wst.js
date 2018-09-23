@@ -6,6 +6,7 @@ var wst={
 		wts_del:"/whm/wts/del/",// http://120.0.0.1:9400/whm/wts/del/1,
 		wts_export:"/whm/imp/excelReport/",// http://120.0.0.1:9400/whm/wts/del/1,
 		wts_query:"/whm/wts/report/",// http://120.0.0.1:9400/whm/wts/report/201807,
+		wts_eval:"/whm/wts/eval/" // http://120.0.0.1:9400/whm/wts/eval/
 	},
 	template:{
 		wst:function(){ return base.get_template("template/wstTemplate.js");},
@@ -94,6 +95,16 @@ var wst={
 			$.success('保存成功',wst.return_cur_index_fn);
 		}
 		base.post_json_data( wst.api_url.wts_save,wstData,callback_fn); 
+	},
+	eval_wts_fn:function(){
+		var wstData = $("#edit-wst-form").serializeObject();
+        if(parseFloat(wstData.points)>1){
+			return;
+		}
+		var callback_fn = function(data, textStatus, request){
+			$('#points').val(Math.floor(data * 100)/100);
+		}
+		base.get_json_data( wst.api_url.wts_eval+wstData.id+","+wstData.workComfirm,{},callback_fn); 
 	},
 	del_wts_fn:function(id){
 		var url = wst.api_url.wts_del+id;
